@@ -5,8 +5,8 @@
 }
 
 body {
-    background-color: black;
-    color: #fff;
+    background-color: black !important;
+    color: #fff !important;
 }
 
 body {
@@ -30,9 +30,30 @@ body::-webkit-scrollbar-thumb {
     border-radius: 8px;
 }
 
-.main_cont {
-    width: 80% !important;
+body {
+    background-color: black !important;
+    color: #fff !important;
+}
+
+/* ---------------- HOME PAGE CSS ----------------  */
+.cont {
+    width: 75%;
     margin-inline: auto !important;
+}
+
+.main_cont {
+    margin-inline: auto !important;
+    padding-top: 2rem;
+    padding-left: 12rem;
+}
+
+.hero_title {
+    margin-top: 7.5rem;
+    line-height: 1.1 !important;
+}
+
+.hero_text {
+    line-height: 1.6 !important;
 }
 
 .gradent {
@@ -40,3 +61,10 @@ body::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, rgba(182, 1, 212, 1) 21%, rgba(79, 39, 177, 1) 83%) !important;
 }
 
+
+@media only screen and (max-width: 600px) {
+    .cont {
+        width: 90%;
+        margin-inline: auto !important;
+    }
+}

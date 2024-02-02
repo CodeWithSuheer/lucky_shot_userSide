@@ -16,7 +16,6 @@ function App() {
           <Route path="/selectNumber" element={<SelectNumber />} />
           <Route path="/userInfo" element={<UserInfo />} />
         </Routes>
-      <Footer/>
       </BrowserRouter>
     </>
   )
