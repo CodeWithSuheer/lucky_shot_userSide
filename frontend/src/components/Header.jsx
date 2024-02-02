@@ -9,9 +9,19 @@ const TextData = () => {
     );
 };
 
+const style = {
+    shadowBlue: {
+        WebkitBoxShadow: '0px 50px 99px 7px rgba(0, 53, 212, 0.86)',
+        MozBoxShadow: '0px 50px 99px 7px rgba(0, 53, 212, 0.86)',
+        boxShadow: '0px 50px 99px 7px rgba(0, 53, 212, 0.86)',
+    }
+};
+
+
+
 const Header = () => {
     return (
-        <div className="header bg-[#0035D4] text-white py-2 text-md overflow-hidden">
+        <div style={style.shadowBlue} className="header bg-[#0035D4] text-white py-2 text-sm" >
             <Marquee speed={70}>
                 <TextData />
                 <TextData />
