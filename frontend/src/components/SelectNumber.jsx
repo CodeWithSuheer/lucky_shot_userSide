@@ -19,7 +19,13 @@ export default function SelectNumber() {
   };
 
 
+  const handleCloseModal = () => {
+    setModal(false); // Close modal
+  };
 
+  const handleOpenModal = () => {
+    setModal(true); // Open modal
+  };
   return (
     <>
       <div className="flex flex-wrap justify-center items-center">
@@ -73,7 +79,7 @@ export default function SelectNumber() {
       </div>
       <Toaster />
 {Modal && 
-      <WinnerToday/>
+       <WinnerToday isOpen={Modal} onClose={handleCloseModal} />
 }
     </>
   );
