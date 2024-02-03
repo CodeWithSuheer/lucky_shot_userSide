@@ -1,13 +1,98 @@
-import React from 'react'
+import React from "react";
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+import medalimage from '../../assets/medal.png'
+const WinnerToday = ({ isOpen, onClose }) => {
+    const tableData = [
+        {
+            id: 1,
+            name: 'Umer Javaid',
+            betNo: [1, 2, 3],
+            betAmount: '100 PKR',
+            phoneNumber: '0332 4700802'
+        },
+        {
+            id: 2,
+            name: 'Umer Javaid',
+            betNo: [1, 2, 3],
+            betAmount: '200 PKR',
+            phoneNumber: '0332 4700802'
+        },
+        {
+            id: 3,
+            name: 'Umer Javaid',
+            betNo: [1, 2, 3],
+            betAmount: '100 PKR',
+            phoneNumber: '0332 4700802'
+        },
+        {
+            id: 4,
+            name: 'Umer Javaid',
+            betNo: [1, 2, 3],
+            betAmount: '500 PKR',
+            phoneNumber: '0336 4700802'
+        },
+        {
+            id: 5,
+            name: 'Umer Javaid',
+            betNo: [1, 2, 3],
+            betAmount: '100 PKR',
+            phoneNumber: '0332 4700802'
+        },
+        {
+            id: 6,
+            name: 'Umer Javaid',
+            betNo: [1, 2, 3],
+            betAmount: '100 PKR',
+            phoneNumber: '0332 4700802'
+        }
+        // Add more objects as needed
+    ];
 
-const WinnerToday = () => {
     return (
-        <>
-            <div className="h-screen d-flex justify-center items-center">
-             
-            </div>
-        </>
-    )
+        <Modal backdrop="blur" size='2xl' placement="top-center" isOpen={isOpen} onClose={onClose} className=" flex flex-wrap flex-col   py-1 px-1 sm:px-6">
+            <ModalContent>
+                <>
+                    <ModalHeader className="flex flex-col justify-center items-center">
+                 
+                    <img src={'	https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454'} className="my-2 w-40 h-16   sm:my-3 sm:w-40 sm:h-20" />
+
+                        <div className="flex gap-5">  
+                        <img src={medalimage} className="w-6 h-6 sm:w-8 sm:h-8"/>
+                        <p className="text-2xl sm:text-3xl font-bold text-black text-center">Winner of the Day </p>
+                        <img src={medalimage} className="w-6 h-6 sm:w-8 sm:h-8"/>
+
+
+                          </div>
+                        
+                    </ModalHeader>
+                    <ModalBody>
+                    
+                            {tableData.map((rowData, index) => (
+                                <div key={index} className="flex justify-between items-center gap-5 px-2 md:gap-2 border-b border-red py-2">
+                       <div className="flex items-center gap-1 sm:gap-3" >  
+                        <img src={medalimage} className="w-6 h-6 sm:w-8 sm:h-8"/>
+                                    
+                                    <span className="block text-sm md:text-lg text-black">{rowData.name}</span>
+                                    </div>
+                                    <div className="flex items-center  gap-0.5 sm:gap-3">
+                                        {rowData.betNo.map((bet, index) => (
+                                            <button key={index} className="border-2 border-[#B600D4] bg-transparent h-7 w-7 sm:h-9 sm:w-9 rounded-lg text-lg font-semibold text-[#B600D4] dark:text-gray-200 cursor-text">{bet}</button>
+                                        ))}
+                                    </div>
+                                    <span className="block text-sm md:text-lg font-semibold text-gray-800 dark:text-gray-200">{rowData.phoneNumber}</span>
+                                </div>
+                            ))}
+                        
+                    </ModalBody>
+                    <ModalFooter className="flex flex-col justify-center items-center">
+<p className="text-xl sm:text-2xl font-bold text-black uppercase ">Thank You </p>
+<p className="text-md sm:text-lg font-bold text-black uppercase text-center"> If you want to Bet Again <span className="text-md sm:text-lg font-bold text-[#B600D4] text-center">  Click Here </span> </p>
+
+                    </ModalFooter>
+                </>
+            </ModalContent>
+        </Modal>
+    );
 }
 
-export default WinnerToday
+export default WinnerToday;
