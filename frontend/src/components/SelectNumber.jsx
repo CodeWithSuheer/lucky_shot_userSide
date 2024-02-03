@@ -86,7 +86,7 @@ export default function () {
           {/* ----------- LOGO IMAGE ----------- */}
           <div className="overflow-hidden flex justify-center md:justify-start mb-8">
             <Link to="/">
-              <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="160" alt="" srcset="" />
+              <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="160" alt="" srcSet="" />
             </Link>
           </div>
 
@@ -106,7 +106,7 @@ export default function () {
           <div className="sm:max-w-xl mx-auto">
 
             <div className="flex flex-wrap justify-center items-center">
-              <div className={`bg-[#474747] border-2 border-[#B600D4] w-full border-dashed rounded-sm px-2 sm:px-2 py-5 sm:py-10 my-3 sm:my-5 flex justify-center items-center flex-wrap`}>
+              <div className={`bg-[#474747] border-2 border-[#B600D4] w-full border-dashed rounded-md px-2 sm:px-2 py-5 sm:py-10 my-3 sm:my-5 flex justify-center items-center flex-wrap`}>
                 {[1, 5, 2, 0, 4, 9, 3, 6, 8, 7].map((number, index) => (
                   <div key={number}
                     onClick={() => handleNumberClick(number)}

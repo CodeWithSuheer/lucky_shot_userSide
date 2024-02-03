@@ -30,7 +30,7 @@ const style = {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         height: "100vh",
-        width: "50%",
+        width: "100%",
     },
     box_div: {
         backgroundImage: 'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEsfwQWdHYvjItuWwtrlH-E55U9woDrZ2o6BeY1pvsxQ&s")',
@@ -71,22 +71,42 @@ const HomePage = () => {
                 </div>
 
                 {/* ----------- HERO SECTION ----------- */}
-                <section className='overflow-visible' style={{ ...style.main_bg, paddingTop: '2rem' }}>
+                <div className="px-6 lg:px-0 pt-20 lg:pt-20 pb-16 mx-auto" >
+                    <div className="items-center hero_cont lg:flex">
+                        <div className="w-full lg:w-1/2">
+                            <div className="lg:max-w-lg">
+                                <img className='overflow-hidden' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
+
+                                <h2 className='hero_title mb-4'>Play With <br /> Lucky Bet Shot</h2>
+                                <p className="hero_text mt-3 text-gray-400 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio.</p>
+                                <Button onClick={scrollToSection} className='gradent px-6 rounded-md text-sm tracking-wider text-white font-medium' variant="solid">
+                                    BET NOW
+                                </Button>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
+                            <img className="w-full h-full lg:max-w-3xl" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/sm_bigWIn-removebg-preview.png?v=1706988115" alt="Catalogue-pana.svg" />
+                        </div>
+                    </div>
+                </div>
+
+                {/* <section className='overflow-visible' style={{ ...style.main_bg, paddingTop: '2rem' }}>
                     <div className="" style={style.left_div}>
                         <div className="main_cont ">
-                            <img className='overflow-hidden' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcset="" />
+                            <img className='overflow-hidden' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
                             <h2 className='hero_title mb-4'>Play With <br /> Lucky Bet Shot</h2>
                             <p className='hero_text mb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi praesentium, possimus fugit porro optio explicabo provident similique incidunt odio nihil.</p>
-                            {/* <button onClick={scrollToSection} type="submit" className='gradent px-7 py-2 rounded-md text-md font-medium'>BET NOW</button> */}
+                           
                             <Button onClick={scrollToSection} className='gradent rounded-md text-sm tracking-wider text-white font-medium' variant="solid">
                                 BET NOW
                             </Button>
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* ----------- DRAW TIMER ----------- */}
-                <section className='text-center bg-black text-white py-20'>
+                <section className='text-center bg-black text-white py-14'>
                     <div className="cont">
                         {/* DIVIDER */}
                         <span className="relative max-w-lg mx-auto flex justify-center">
@@ -94,12 +114,12 @@ const HomePage = () => {
                             <span className="relative bg-black z-10 px-2"><img className='h-7' src={crown} alt="" /></span>
                         </span>
                         {/* DIVIDER - END*/}
-                        <h2 className='text-4xl font-bold mt-3 mb-7'>Draw Timer</h2>
+                        <h2 className='text-4xl font-bold mt-3 mb-12'>Draw Timer</h2>
 
                         <div className="flex flex-wrap justify-center gap-4 sm:gap-0 sm:justify-between items-center">
                             {/* LEFT IMAGE */}
                             <div className="w-full max-w-xs text-center">
-                                <img className="object-cover object-center w-full mx-auto rounded-lg" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/LEFT_IMAGE.png?v=1706881540" alt="avatar" />
+                                <img className="object-cover object-center w-full mx-auto rounded-lg" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/LEFT_IMAGE.png?v=1706984254" alt="avatar" />
                             </div>
 
                             {/* MIDDLE DATA */}
@@ -182,14 +202,14 @@ const HomePage = () => {
 
                             {/* RIGHT IMAGE */}
                             <div className="w-full max-w-xs text-center">
-                                <img className="object-cover object-center w-full mx-auto rounded-lg" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/RIGHT_IMAGE.png?v=1706881546" alt="avatar" />
+                                <img className="object-cover object-center w-full mx-auto rounded-lg" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/RIGHT_IMAGE.png?v=1706984256" alt="avatar" />
                             </div>
                         </div>
                     </div>
                 </section>
 
                 {/* ----------- BET BOXES ----------- */}
-                <section id='bet_boxes' className='text-center bg-black text-white pb-10'>
+                <section id='bet_boxes' className='text-center bg-black text-white py-10'>
                     <div className="cont">
                         <div className="flex flex-wrap justify-center items-center gap-3">
                             {/* 100 PKR */}

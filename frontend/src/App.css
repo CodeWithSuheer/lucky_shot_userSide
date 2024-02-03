@@ -32,6 +32,11 @@ body::-webkit-scrollbar-thumb {
 
 
 /* ---------------- HOME PAGE CSS ----------------  */
+.hero_cont {
+    width: 75% !important;
+    margin-inline: auto !important;
+}
+
 .cont {
     width: 75% !important;
     margin-inline: auto !important;
@@ -45,14 +50,15 @@ body::-webkit-scrollbar-thumb {
 }
 
 .hero_title {
-    font-size: 3rem !important;
+    font-size: 2.6rem !important;
     line-height: 1.2 !important;
     font-weight: bold;
-    margin-top: 7.5rem;
+    margin-top: 7rem;
 }
 
 .hero_text {
     line-height: 1.6 !important;
+    width: 80% !important;
 }
 
 .gradent {
@@ -78,14 +84,9 @@ body::-webkit-scrollbar-thumb {
         font-size: 2.5rem !important;
         line-height: 1.2 !important;
         font-weight: bold;
-        margin-top: 7.5rem;
     }
 
-    .hero_text {
-        font-size: 1.01rem !important;
-        font-weight: 100 !important;
-        width: 80%;
-    }
+
 }
 
 @media only screen and (max-width: 1024px) {
@@ -99,14 +100,10 @@ body::-webkit-scrollbar-thumb {
         font-size: 2.5rem !important;
         line-height: 1.2 !important;
         font-weight: bold;
-        margin-top: 6rem;
+        margin-top: 3rem;
     }
 
-    .hero_text {
-        font-size: .9rem !important;
-        font-weight: 100 !important;
-        width: 80%;
-    }
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -117,10 +114,10 @@ body::-webkit-scrollbar-thumb {
     }
 
     .hero_title {
-        font-size: 3rem !important;
+        font-size: 2.5rem !important;
         line-height: 1.2 !important;
         font-weight: bold;
-        margin-top: 7.5rem;
+        margin-top: 3rem;
     }
 }
 
@@ -132,15 +129,25 @@ body::-webkit-scrollbar-thumb {
     }
 
     .hero_title {
-        font-size: 3rem !important;
+        font-size: 2.2rem !important;
         line-height: 1.2 !important;
         font-weight: bold;
-        margin-top: 7.5rem;
+        margin-top: 2.5rem;
+        letter-spacing: 1px;
+    }
+
+    .hero_text {
+        width: 100% !important;
     }
 }
 
 
 @media only screen and (max-width: 768px) {
+    .hero_cont {
+        width: 100% !important;
+        margin-inline: auto !important;
+    }
+
     .cont {
         width: 90% !important;
         margin-inline: auto !important;
