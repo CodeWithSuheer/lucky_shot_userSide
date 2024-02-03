@@ -104,7 +104,7 @@ export default function () {
           <div className="sm:max-w-2xl mx-auto">
 
             <div className="flex flex-wrap justify-center items-center">
-              <div className={`bg-[#474747] border-2 border-[#B600D4] w-full border-dashed rounded-sm px-2 sm:px-2 py-5 sm:py-10 my-3 sm:my-5 grid grid-cols-3 sm:grid-cols-4 place-content-center place-items-center`}>
+              <div className={`bg-[#474747] border-2 border-[#B600D4] w-full border-dashed rounded-sm px-2 sm:px-2 py-5 sm:py-10 my-3 sm:my-5 flex justify-center items-center gap-10 flex-wrap`}>
                 {[1, 5, 2, 0, 4, 9, 3, 6, 8, 7].map((number, index) => (
                   <div key={number}
                     onClick={() => handleNumberClick(number)}
