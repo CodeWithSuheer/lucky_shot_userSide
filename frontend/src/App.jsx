@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './components/HomePage';
 import SelectNumber from './components/SelectNumber';
 import UserInfo from './components/UserInfo';
-import './App.css'
-import Footer from "./common/Footer";
+import Footer from './common/Footer';
+import Information from './components/Information';
 
 function App() {
 
@@ -14,6 +14,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/selectNumber/:id" element={<SelectNumber />} />
           <Route path="/userInfo" element={<UserInfo />} />
+          <Route path="/Information" element={<Information />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>
