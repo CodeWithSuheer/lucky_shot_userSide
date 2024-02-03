@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { Button } from "@nextui-org/react";
 import crown from '../assets/CROWN.png';
 import PKR100 from '../assets/PKR100.png';
 import PKR500 from '../assets/PKR500.png';
@@ -76,7 +77,10 @@ const HomePage = () => {
                             <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcset="" />
                             <h2 className='hero_title mb-4'>Play With <br /> Lucky Bet Shot</h2>
                             <p className='hero_text mb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi praesentium, possimus fugit porro optio explicabo provident similique incidunt odio nihil.</p>
-                            <button onClick={scrollToSection} type="submit" className='gradent px-7 py-2 rounded-md text-md font-medium'>BET NOW</button>
+                            {/* <button onClick={scrollToSection} type="submit" className='gradent px-7 py-2 rounded-md text-md font-medium'>BET NOW</button> */}
+                            <Button onClick={scrollToSection} className='gradent rounded-md text-sm tracking-wider text-white font-medium' variant="solid">
+                                BET NOW
+                            </Button>
                         </div>
                     </div>
                 </section>
@@ -145,7 +149,7 @@ const HomePage = () => {
                                                 <span>*********3232</span>
                                             </div>
                                             <div className='bg-gray-400 h-[1px] my-2 w-full'></div>
-                                            <p className='text-sm font-light underline underline-offset-4'>View all</p>
+                                            <p className='text-sm font-light underline underline-offset-4 cursor-pointer'>View all</p>
                                         </div>
                                     </div>
                                 </div>

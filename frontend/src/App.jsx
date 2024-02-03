@@ -1,10 +1,9 @@
-import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import './App.css'
 import HomePage from './components/HomePage';
 import SelectNumber from './components/SelectNumber';
 import UserInfo from './components/UserInfo';
-import Footer from './common/Footer';
+import './App.css'
+import Footer from "./common/Footer";
 
 function App() {
 
@@ -16,6 +15,7 @@ function App() {
           <Route path="/selectNumber/:id" element={<SelectNumber />} />
           <Route path="/userInfo" element={<UserInfo />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )

@@ -30,10 +30,6 @@ body::-webkit-scrollbar-thumb {
     border-radius: 8px;
 }
 
-body {
-    background-color: black !important;
-    color: #fff !important;
-}
 
 /* ---------------- HOME PAGE CSS ----------------  */
 .cont {
