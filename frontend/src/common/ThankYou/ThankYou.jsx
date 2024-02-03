@@ -5,7 +5,7 @@ const ThankYou = ({ isOpen, onClose }) => {
  
 
     return (
-        <Modal backdrop="blur" size='sm' placement="top-center" isOpen={isOpen} onClose={onClose} className=" flex flex-wrap flex-col justify-center items-center  px-2 py-1 md:px-6">
+        <Modal backdrop="blur" size='md' placement="top" isOpen={isOpen} onClose={onClose} className=" flex flex-wrap flex-col justify-center items-center  px-2 py-1 md:px-6">
             <ModalContent>
                 <>
                     <ModalHeader >
