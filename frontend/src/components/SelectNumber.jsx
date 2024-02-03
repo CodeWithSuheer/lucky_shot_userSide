@@ -43,7 +43,6 @@ export default function () {
     if (selectedNumbers.length < 3) {
       setSelectedNumbers([...selectedNumbers, number]);
     } else {
-      // Show toast message when user tries to select more than three numbers
       toast.error("You can select only three numbers");
     }
   };
@@ -60,6 +59,9 @@ export default function () {
 
   // HANDLE REMOVE NUMBER
   const handleRemoveNumber = () => {
+    if (selectedNumbers.length === 0) {
+      toast.error("Please select a number first")
+    }
     setSelectedNumbers(selectedNumbers.slice(0, -1));
   };
 
@@ -101,14 +103,14 @@ export default function () {
 
 
           {/* NUMBER BOX */}
-          <div className="sm:max-w-2xl mx-auto">
+          <div className="sm:max-w-xl mx-auto">
 
             <div className="flex flex-wrap justify-center items-center">
-              <div className={`bg-[#474747] border-2 border-[#B600D4] w-full border-dashed rounded-sm px-2 sm:px-2 py-5 sm:py-10 my-3 sm:my-5 flex justify-center items-center gap-10 flex-wrap`}>
+              <div className={`bg-[#474747] border-2 border-[#B600D4] w-full border-dashed rounded-sm px-2 sm:px-2 py-5 sm:py-10 my-3 sm:my-5 flex justify-center items-center flex-wrap`}>
                 {[1, 5, 2, 0, 4, 9, 3, 6, 8, 7].map((number, index) => (
                   <div key={number}
                     onClick={() => handleNumberClick(number)}
-                    className={`relative bg-[#DB00FF] hover:bg-[#B600D4] rounded-full h-[68px] w-[68px] xs:h-[80px] xs:w-[80px] sm:h-[95px] sm:w-[95px] md:h-[100px] md:w-[100px] lg:h-[110px] lg:w-[110px] mb-5 cursor-pointer flex justify-center items-center
+                    className={`relative mx-2 sm:mx-2 bg-[#DB00FF] hover:bg-[#B600D4] rounded-full h-[68px] w-[68px] xs:h-[80px] xs:w-[80px] sm:h-[95px] sm:w-[95px] md:h-[100px] md:w-[100px] lg:h-[110px] lg:w-[110px] mb-5 cursor-pointer flex justify-center items-center
                      `}>
 
                     <div className="absolute t-0 bg-white rounded-full h-[40px] w-[40px] xs:h-[60px] xs:w-[60px] sm:h-[61px] sm:w-[61px] md:h-[62px] md:w-[62px] lg:h-[65px] lg:w-[65px] flex justify-center items-center">
@@ -116,7 +118,7 @@ export default function () {
                     </div>
 
                     {/* UNSELECT BUTTON */}
-                    {index === 9 && (
+                    {/* {index === 9 && (
                       <div className="absolute bottom-2 sm:bottom-5 left-40 sm:left-44 bg-gray-500 rounded-full w-8 h-8 sm:w-8 sm:h-8 flex justify-center items-center ">
                         <Button onClick={handleRemoveNumber} size="small" variant="text">
                           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -124,7 +126,7 @@ export default function () {
                           </svg>
                         </Button>
                       </div>
-                    )}
+                    )} */}
                   </div >
                 ))}
               </div>
@@ -145,7 +147,10 @@ export default function () {
                 {/* <Button onClick={() => setModal(!Modal)} radius="sm" className="gradent px-8 py-2.5 rounded-md text-lg sm:text-xl font-semibold text-white">
                   Next
                 </Button> */}
-                <Button onClick={handleNavigate} className='gradent rounded-md text-md px-8 tracking-wider text-white font-medium' variant="solid">
+                <Button onClick={handleRemoveNumber} className='gradent rounded-md text-md mx-3 px-8 tracking-wider text-white font-medium' variant="solid">
+                  Clear
+                </Button>
+                <Button onClick={handleNavigate} className='gradent rounded-md text-md mx-3 px-8 tracking-wider text-white font-medium' variant="solid">
                   Next
                 </Button>
               </div>

@@ -14,7 +14,7 @@ const Footer = () => {
                     <a href="#" className="p-1.5 rounded-full text-white bg-[#B600D4] hover:bg-[#7212D4]"><Instagram size={20} /></a>
                     <a href="#" className="p-1.5 rounded-full text-white bg-[#B600D4] hover:bg-[#7212D4]"><Youtube size={20} /></a>
                 </div>
-                <hr class="my-3 border-gray-200 dark:border-gray-100" />
+                <hr className="my-3 border-gray-200 dark:border-gray-100" />
                 <p className='text-center text-gray-300 font-light text-xs'>©2024 Stonefly Systems, Inc. All rights reserved.</p>
             </div>
         </div>
