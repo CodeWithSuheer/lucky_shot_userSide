@@ -63,7 +63,7 @@ const HomePage = () => {
         <>
             <div className="relative">
                 {/* ----------- HEADER ----------- */}
-                <div style={{ ...style.shadowBlue, zIndex: 999 }} className="absolute header bg-[#0035D4] text-white py-2 text-sm">
+                <div style={{ ...style.shadowBlue, zIndex: 999 }} className="absolute w-full header bg-[#0035D4] text-white py-2 text-sm">
                     <Marquee speed={70}>
                         <TextData />
                         <TextData />
@@ -73,8 +73,8 @@ const HomePage = () => {
                 {/* ----------- HERO SECTION ----------- */}
                 <section className='overflow-visible' style={{ ...style.main_bg, paddingTop: '2rem' }}>
                     <div className="" style={style.left_div}>
-                        <div className="main_cont">
-                            <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcset="" />
+                        <div className="main_cont ">
+                            <img className='overflow-hidden' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcset="" />
                             <h2 className='hero_title mb-4'>Play With <br /> Lucky Bet Shot</h2>
                             <p className='hero_text mb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi praesentium, possimus fugit porro optio explicabo provident similique incidunt odio nihil.</p>
                             {/* <button onClick={scrollToSection} type="submit" className='gradent px-7 py-2 rounded-md text-md font-medium'>BET NOW</button> */}

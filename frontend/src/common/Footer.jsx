@@ -3,12 +3,12 @@ import { Facebook, Instagram, Youtube, Twitter } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <div className="cont bg-black text-white py-4 pb-6 flex justify-between items-center">
-            <div className="flex items-center">
-                <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" alt="Lucky Logo" className="w-44 mr-4" />
+        <div className="cont bg-transparent text-white py-4 pb-6 flex justify-between items-center flex-col sm:flex-row">
+            <div className="flex justify-center items-center">
+                <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" alt="Lucky Logo" className="w-44" />
             </div>
-            <div className="flex flex-col w-full ml-4">
-                <div className="flex space-x-2 justify-end">
+            <div className="flex flex-col w-full ml-0 sm:ml-4 mt-5 sm:mt-0">
+                <div className="flex space-x-2 justify-center sm:justify-end">
                     <a href="#" className="p-1.5 rounded-full text-white bg-[#B600D4] hover:bg-[#7212D4]"><Facebook size={20} /></a>
                     <a href="#" className="p-1.5 rounded-full text-white bg-[#B600D4] hover:bg-[#7212D4]"><Twitter size={20} /></a>
                     <a href="#" className="p-1.5 rounded-full text-white bg-[#B600D4] hover:bg-[#7212D4]"><Instagram size={20} /></a>

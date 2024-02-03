@@ -4,7 +4,7 @@ import SelectNumber from './components/SelectNumber';
 import UserInfo from './components/UserInfo';
 import Footer from './common/Footer';
 import Information from './components/Information';
-
+import './App.css'
 function App() {
 
   return (
@@ -15,7 +15,6 @@ function App() {
           <Route path="/selectNumber/:id" element={<SelectNumber />} />
           <Route path="/userInfo" element={<UserInfo />} />
           <Route path="/Information" element={<Information />} />
-
         </Routes>
         <Footer />
       </BrowserRouter>

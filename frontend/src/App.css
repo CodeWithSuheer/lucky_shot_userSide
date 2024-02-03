@@ -33,7 +33,7 @@ body::-webkit-scrollbar-thumb {
 
 /* ---------------- HOME PAGE CSS ----------------  */
 .cont {
-    width: 75%;
+    width: 75% !important;
     margin-inline: auto !important;
 }
 
@@ -142,7 +142,7 @@ body::-webkit-scrollbar-thumb {
 
 @media only screen and (max-width: 768px) {
     .cont {
-        width: 90%;
+        width: 90% !important;
         margin-inline: auto !important;
     }
 }
