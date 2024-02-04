@@ -162,27 +162,27 @@ const Information = () => {
                     <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-6 md:gap-3 py-2`}>
 
                         <label htmlFor="hs-radio-on-right" className="flex gap-3 items-center w-full  rounded-lg text-sm ">
-                            <img className='rounded-md  h-8 w-8  ' src="https://play-lh.googleusercontent.com/9-0wlkGycWAJRsuQ-p_bMqDGE0liYgihxKka0PtRjxqEiRVkDKaROEyFxYg520lLbpk" alt="" />
-                            <span className="text-lg  text-gray-500 ]">Jazz Cash</span>
+                            <img className='rounded-md h-8 w-8' src="https://play-lh.googleusercontent.com/9-0wlkGycWAJRsuQ-p_bMqDGE0liYgihxKka0PtRjxqEiRVkDKaROEyFxYg520lLbpk" alt="" />
+                            <span className="text-lg  text-gray-500 w-24">Jazz Cash</span>
 
                             <input type="radio" required name="hs-radio-on-right" className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4]" id="hs-radio-on-right" />
                         </label>
 
                         <label htmlFor="hs-radioradio-on-right" className="flex gap-3  items-center  w-full  rounded-lg text-sm ">
-                            <img className='rounded-md  h-8 w-8 ' src={sadapay} alt="" />
-                            <span className="text-lg  text-gray-500 ]">Sada Pay</span>
+                            <img className='rounded-md h-8 w-8' src={sadapay} alt="" />
+                            <span className="text-lg  text-gray-500 w-24">Sada Pay</span>
 
                             <input type="radio" required name="hs-radio-on-right" className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4] " id="hs-radioradio-on-right" />
                         </label>
                         <label htmlFor="hs-radio-on-right11" className="flex gap-3 items-center w-full  rounded-lg text-sm ">
-                            <img className='rounded-md  h-8 w-8 ' src={easy_pasia_logo} alt="" />
-                            <span className="text-lg  text-gray-500 ]">Easy Paisa</span>
+                            <img className='rounded-md h-8 w-8' src={easy_pasia_logo} alt="" />
+                            <span className="text-lg  text-gray-500 w-24">Easy Paisa</span>
                             <input type="radio" required name="hs-radio-on-right" className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4] " id="hs-radio-on-right11" />
                         </label>
 
                         <label htmlFor="hs-radioradio-on-right22" className="flex gap-3 items-center w-full  rounded-lg text-sm ">
-                            <img className='rounded-md  h-8 w-8 ' src={nayapay} alt="" />
-                            <span className="text-lg  text-gray-500 ]">Naya Pay</span>
+                            <img className='rounded-md h-8 w-8' src={nayapay} alt="" />
+                            <span className="text-lg  text-gray-500 w-24">Naya Pay</span>
                             <input type="radio" required name="hs-radio-on-right" className="mt-0.5 border-gray-200 rounded-full  accent-[#B600D4] " id="hs-radioradio-on-right22" />
                         </label>
 
@@ -194,7 +194,7 @@ const Information = () => {
 
 
 
-                    <fieldset className="grid grid-cols-2 gap-4 my-5">
+                    <fieldset className="grid grid-cols-1 md:grid-cols-2 gap-4 my-5">
                         <legend className="sr-only">Accounts</legend>
 
                         <div>
