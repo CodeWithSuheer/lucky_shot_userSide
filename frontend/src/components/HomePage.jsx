@@ -13,14 +13,14 @@ import { useState } from 'react';
 const TextData = () => {
     return (
         <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem nam
+            Welcome to Lucky Bet Shot – Where Luck Meets Opportunity! Unleash the thrill of betting on our platform. Your journey to excitement and winning starts here. Bet wisely, win big!
         </p>
     );
 };
 
 const style = {
     main_bg: {
-        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/IAMGES.png?v=1706878558")',
+        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Rectangle_71_1.png?v=1707077397")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -28,7 +28,7 @@ const style = {
         width: "100%",
     },
     left_div: {
-        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/gRADAINT.png?v=1706879142")',
+        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Mask_group_1.png?v=1707077355")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -53,6 +53,19 @@ const style = {
 const HomePage = () => {
     const [Modal, setModal] = useState(false);
     const [time, setTime] = useState(new Date());
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -95,19 +108,19 @@ const HomePage = () => {
                 <div style={{ ...style.shadowBlue, zIndex: 999 }} className="absolute w-full header bg-[#0035D4] text-white py-2 text-sm">
                     <Marquee speed={70}>
                         <TextData />
-                        <TextData />
                     </Marquee>
                 </div>
 
                 {/* ----------- HERO SECTION ----------- */}
-                <div className="px-6 lg:px-0 pt-20 lg:pt-20 pb-16 mx-auto" >
+                <div className=" lg:px-0 pt-20 lg:pt-20 pb-16 mx-auto" style={isMobile ? null : style.main_bg}>
                     <div className="items-center hero_cont lg:flex">
-                        <div className="w-full lg:w-1/2">
+
+                        <div className="px-6 w-full lg:w-1/2" style={isMobile ? style.left_div : null}>
                             <div className="lg:max-w-lg">
-                                <img className='overflow-hidden' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
+                                <img className='overflow-hidden mx-auto md:mx-0' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
 
                                 <h2 className='hero_title mb-4'>Play With <br /> Lucky Bet Shot</h2>
-                                <p className="hero_text mt-3 text-gray-400 mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro beatae error laborum ab amet sunt recusandae? Reiciendis natus perspiciatis optio.</p>
+                                <p className="hero_text mt-3 text-gray-400 mb-5">Discover the excitement at Lucky Bet Shot! Place your bets and test your luck for big wins. A trusted platform for thrilling experiences. Join us now!</p>
                                 <Button onClick={scrollToSection} className='gradent px-6 rounded-md text-sm tracking-wider text-white font-medium' variant="solid">
                                     BET NOW
                                 </Button>
@@ -115,7 +128,7 @@ const HomePage = () => {
                         </div>
 
                         <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                            <img className="w-full h-full lg:max-w-3xl" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/sm_bigWIn-removebg-preview.png?v=1706988115" alt="Catalogue-pana.svg" />
+                            <img className="w-full h-full flex md:hidden lg:max-w-3xl" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Rectangle_71.png?v=1707077354" alt="Catalogue-pana.svg" />
                         </div>
                     </div>
                 </div>
@@ -267,7 +280,7 @@ const HomePage = () => {
                     </div>
                 </section>
 
-            </div>
+            </div >
             {
                 Modal && <WinnerToday isOpen={handleOpenModal} onClose={handleCloseModal} />
             }
