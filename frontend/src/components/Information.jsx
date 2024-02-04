@@ -2,6 +2,7 @@ import { useState } from 'react';
 import React from 'react';
 import Marquee from 'react-fast-marquee';
 import Header from './Header';
+import { MoveUpRight } from 'lucide-react';
 import backgroundimage from '../assets/BG.png'
 import easypaisa from '../assets/easypaisa.png'
 import easy_pasia_logo from '../assets/easy_pasia_logo.png'
@@ -11,14 +12,14 @@ import { Button } from '@nextui-org/button';
 import nayapay from '../assets/nayapay.png'
 import sadapay from '../assets/sadapay.png'
 import crown from '../assets/CROWN.png';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ThankYou from "../common/ThankYou/ThankYou";
 
 
 const TextData = () => {
     return (
         <p>
-            I can be a React component, multiple React hello this is marquee
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem nam
         </p>
     );
 };
@@ -41,7 +42,14 @@ const style = {
 
 const Information = () => {
     const [activeCard, setActiveCard] = useState(null);
+
+    const { id } = useParams();
+    const amount = id.split("-")[0];  // USER BET AMOUNT  
+    const bet_number = id.split("-")[1]; // USER BET NUMBER
+
+
     const [Modal, setModal] = useState(false);
+
 
     const [formData, setFormData] = useState({
         name: "",
@@ -125,7 +133,7 @@ const Information = () => {
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-200 ">Bet Amount</label>
-                            <input required type="number" placeholder="Bet Amount" value={formData.betAmount}
+                            <input required type="number" placeholder="Bet Amount" value={amount}
                                 onChange={(e) => handleChange(e, "betAmount")} className="block w-full px-5 py-4 mt-2 rounded-md text-gray-200 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none" />
                         </div>
                     </div>
@@ -180,33 +188,82 @@ const Information = () => {
 
                     </div>
 
-                    <h4 className="text-lg md:text-2xl font-medium text-white text-center mt-9 mb-3">Send Money</h4>
+                    <h4 className="text-lg md:text-3xl font-medium text-white text-center mt-12 mb-3">Send Money</h4>
                     {/* <p className='text-sm sm:text-md text-gray-100 text-center py-1' style={{ fontWeight: '100' }}>Please select the account in which you are sending amount</p> */}
                     <p className='text-sm sm:text-md text-gray-200 text-center py-1' style={{ fontWeight: '100' }}>Send bet amount on this Account and upload the payment configuration Screenshot</p>
 
+
+
+                    <fieldset className="grid grid-cols-2 gap-4 my-5">
+                        <legend className="sr-only">Accounts</legend>
+
+                        <div>
+                            <label
+                                htmlFor="DeliveryStandard"
+                                className="flex cursor-pointer justify-between gap-4 rounded-lg border border-[#B600D4] bg-transparent  p-4 px-4 text-sm font-medium shadow-sm has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
+                            >
+                                <div><p className="text-white flex items-center text-xl"> <img className='rounded-sm w-12 h-7 mr-2' src={jazzcash} alt="" />Jazz Cash</p>
+                                </div>
+
+                                <input
+                                    type="radio"
+                                    name="DeliveryOption"
+                                    value="DeliveryStandard"
+                                    id="DeliveryStandard"
+                                    className="h-5 w-5 border-gray-300 text-blue-500"
+                                // checked
+                                />
+                            </label>
+                        </div>
+
+                        <div>
+                            <label
+                                htmlFor="DeliveryPriority"
+                                className="flex cursor-pointer justify-between gap-4 rounded-lg border border-[#B600D4] bg-transparent p-4 px-4 text-sm font-medium shadow-sm has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
+                            >
+                                <div><p className="text-white flex items-center text-xl"> <img className='rounded-sm w-7 h-7 mr-2' src={easypaisa} alt="" />EasyPaisa</p>
+                                </div>
+
+                                <input
+                                    type="radio"
+                                    name="DeliveryOption"
+                                    value="DeliveryPriority"
+                                    id="DeliveryPriority"
+                                    className="h-5 w-5 border-gray-300 text-blue-500"
+                                />
+                            </label>
+                        </div>
+                    </fieldset>
+
+
+
                     <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 py-6`}>
                         <div className="flex gap-3 sm:gap-5 items-center">
-                            <div className={`block w-full rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
+
+                            <div className={`flex justify-center items-center text-center w-full h-48 rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
+                                <p className='text-lg md:text-md lg:text-lg tracking-wide'>Choose any account for more details</p>
+                            </div>
+
+                            {/* <div className={`block w-full rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
                                 <img className='rounded-sm w-15 h-10 pb-2' src={easypaisa} alt="" />
                                 <p className='text-white font-medium text-sm '>Account Number:</p>
                                 <p className='text-gray-200 text-sm font-light my-1'>0332 2323232</p>
                                 <p className='text-white mt-2 font-medium text-md'>Account Title:</p>
                                 <p className='text-gray-200 text-sm'>Umer</p>
-                            </div>
+                            </div> */}
 
-                            <div className={`block w-full rounded-md border ${activeCard === 'jazzcash' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('jazzcash')}>
+                            {/* <div className={`block w-full rounded-md border ${activeCard === 'jazzcash' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('jazzcash')}>
                                 <img className='rounded-md w-15 h-10 pb-2' src={jazzcash} alt="" />
                                 <p className='text-white text-sm'>Account Number:</p>
                                 <p className='text-gray-200 text-sm font-light my-1'>0332 2323232</p>
                                 <p className='text-white mt-2 text-md'>Account Title:</p>
                                 <p className='text-gray-200 text-sm'>Suheer Zahid</p>
-                            </div>
+                            </div> */}
                         </div>
-                        <div className='grid  lg:col-span-2 '>
-                            <div className="w-full flex  items-center justify-center rounded-sm bg-[#474747] ">
-                                <label
-                                    className=" cursor-pointer p-4  "
-                                >
+
+                        <div className='grid lg:col-span-2 '>
+                            <div className="w-full flex items-center justify-center rounded-md bg-[#474747]">
+                                <label className="cursor-pointer p-4">
                                     <input
                                         type="file"
                                         id="AdditionalFile"

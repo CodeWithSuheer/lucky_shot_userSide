@@ -70,8 +70,13 @@ body::-webkit-scrollbar-thumb {
 /* --------------- MEDIA QUERY ---------------  */
 
 @media only screen and (max-width: 1280px) {
+    .hero_cont {
+        width: 82% !important;
+        margin-inline: auto !important;
+    }
+
     .cont {
-        width: 85%;
+        width: 82% !important;
         margin-inline: auto !important;
     }
 
@@ -91,6 +96,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media only screen and (max-width: 1024px) {
+
     .main_cont {
         margin-inline: auto !important;
         padding-top: 2rem;

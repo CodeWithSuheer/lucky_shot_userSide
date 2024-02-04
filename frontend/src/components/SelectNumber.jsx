@@ -5,13 +5,13 @@ import { Toaster, toast } from "react-hot-toast";
 import ThankYou from "../common/ThankYou/ThankYou";
 import crown from '../assets/CROWN.png';
 import BG from '../assets/BG.png';
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 
 const TextData = () => {
   return (
     <p>
-      I can be a React component, multiple React hello this is marquee
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem nam
     </p>
   );
 };
@@ -34,6 +34,8 @@ const style = {
 
 
 export default function () {
+  const { id } = useParams();
+  const amount = id.split("-")[1];
   const navigate = useNavigate()
   const [selectedNumbers, setSelectedNumbers] = useState([]);
   const [Modal, setModal] = useState(false); // Initialize Modal as false
@@ -66,8 +68,14 @@ export default function () {
   };
 
   const handleNavigate = () => {
-    navigate("/Information")
-    window.scroll(0, 0);
+    if (selectedNumbers.length === 3) {
+      const join = selectedNumbers.join("");
+      navigate(`/details/${amount}-${join}`)
+      window.scroll(0, 0);
+    }
+    else {
+      toast.error("Please choose 3 numbers")
+    }
   }
 
 
@@ -117,16 +125,6 @@ export default function () {
                       <span className="text-lg sm:text-3xl font-bold text-[#B600D4]">{number}</span>
                     </div>
 
-                    {/* UNSELECT BUTTON */}
-                    {/* {index === 9 && (
-                      <div className="absolute bottom-2 sm:bottom-5 left-40 sm:left-44 bg-gray-500 rounded-full w-8 h-8 sm:w-8 sm:h-8 flex justify-center items-center ">
-                        <Button onClick={handleRemoveNumber} size="small" variant="text">
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </Button>
-                      </div>
-                    )} */}
                   </div >
                 ))}
               </div>
