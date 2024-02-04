@@ -86,7 +86,7 @@ const WinnerToday = ({ isOpen, onClose }) => {
                     </ModalBody>
                     <ModalFooter className="flex flex-col justify-center items-center">
 <p className="text-xl sm:text-2xl font-bold text-black uppercase ">Thank You </p>
-<p className="text-md sm:text-lg font-bold text-black uppercase text-center"> If you want to Bet Again <span className="text-md sm:text-lg font-bold text-[#B600D4] text-center">  Click Here </span> </p>
+<p className="text-md sm:text-lg font-bold text-black uppercase text-center"> If you want to Bet Again <span onClick={onClose} className="text-md sm:text-lg font-bold text-[#B600D4] text-center cursor-pointer">  Click Here </span> </p>
 
                     </ModalFooter>
                 </>
