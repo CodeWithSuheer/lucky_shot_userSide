@@ -40,7 +40,7 @@ const style = {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "13rem",
+        height: "121rem",
         width: "100%",
     },
     shadowBlue: {
