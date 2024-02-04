@@ -189,9 +189,7 @@ const Information = () => {
                     </div>
 
                     <h4 className="text-lg md:text-3xl font-medium text-white text-center mt-12 mb-3">Send Money</h4>
-                    {/* <p className='text-sm sm:text-md text-gray-100 text-center py-1' style={{ fontWeight: '100' }}>Please select the account in which you are sending amount</p> */}
                     <p className='text-sm sm:text-md text-gray-200 text-center py-1' style={{ fontWeight: '100' }}>Send bet amount on this Account and upload the payment configuration Screenshot</p>
-
 
 
                     <fieldset className="grid grid-cols-1 md:grid-cols-2 gap-4 my-5">
@@ -261,29 +259,27 @@ const Information = () => {
                             </div> */}
                         </div>
 
-                        <div className='grid lg:col-span-2 '>
-                            <div className="w-full flex items-center justify-center rounded-md bg-[#474747]">
+                        <div className='col-span-1 lg:col-span-2'>
+                            <div className="w-full flex items-center justify-center h-16 md:h-48 rounded-md bg-[#474747]">
                                 <label className="cursor-pointer p-4">
                                     <input
                                         type="file"
                                         id="AdditionalFile"
                                         name="AdditionalFile"
-                                        className="ModelFileDropField absolute w-58 h-10 opacity-0 cursor-pointer"
+                                        className="ModelFileDropField absolute w-[100px] h-10 opacity-0 cursor-pointer"
                                         onChange={(e) => handleChange(e, "AdditionalFile")}
                                         required
                                     />
-                                    <div className=" flex gap-1 items-center">
+                                    <div className="flex gap-1 items-center">
                                         <FileUp size={25} />
                                         <span className="text-gray-300 font-normal">
                                             {formData.additionalFile
                                                 ? formData.additionalFile.name
                                                 : "Upload Screenshot"}
-
                                         </span>
                                     </div>
                                 </label>
                             </div>
-
                         </div>
                     </div>
 
