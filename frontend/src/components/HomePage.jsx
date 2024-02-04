@@ -12,7 +12,7 @@ import { useState } from 'react';
 
 const TextData = () => {
     return (
-        <p>
+        <p className='px-10'>
             Welcome to Lucky Bet Shot – Where Luck Meets Opportunity! Unleash the thrill of betting on our platform. Your journey to excitement and winning starts here. Bet wisely, win big!
         </p>
     );
@@ -112,11 +112,11 @@ const HomePage = () => {
                 </div>
 
                 {/* ----------- HERO SECTION ----------- */}
-                <div className=" lg:px-0 pt-20 lg:pt-20 pb-16 mx-auto" style={isMobile ? null : style.main_bg}>
+                <div className="lg:px-0 pt-20 lg:pt-20 pb-16 mx-auto" style={isMobile ? null : style.main_bg}>
                     <div className="items-center hero_cont lg:flex">
 
-                        <div className="px-6 w-full lg:w-1/2" style={isMobile ? style.left_div : null}>
-                            <div className="lg:max-w-lg">
+                        <div className="px-5 w-full lg:w-1/2" style={isMobile ? style.left_div : null}>
+                            <div className="lg:max-w-lg text-start md:text-start">
                                 <img className='overflow-hidden mx-auto md:mx-0' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
 
                                 <h2 className='hero_title mb-4'>Play With <br /> Lucky Bet Shot</h2>
@@ -133,22 +133,8 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                {/* <section className='overflow-visible' style={{ ...style.main_bg, paddingTop: '2rem' }}>
-                    <div className="" style={style.left_div}>
-                        <div className="main_cont ">
-                            <img className='overflow-hidden' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
-                            <h2 className='hero_title mb-4'>Play With <br /> Lucky Bet Shot</h2>
-                            <p className='hero_text mb-4'>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi praesentium, possimus fugit porro optio explicabo provident similique incidunt odio nihil.</p>
-                           
-                            <Button onClick={scrollToSection} className='gradent rounded-md text-sm tracking-wider text-white font-medium' variant="solid">
-                                BET NOW
-                            </Button>
-                        </div>
-                    </div>
-                </section> */}
-
                 {/* ----------- DRAW TIMER ----------- */}
-                <section className='text-center bg-black text-white py-14'>
+                <section className='px-4 text-center bg-black text-white py-14'>
                     <div className="cont">
                         {/* DIVIDER */}
                         <span className="relative max-w-lg mx-auto flex justify-center">
@@ -251,25 +237,25 @@ const HomePage = () => {
                 </section>
 
                 {/* ----------- BET BOXES ----------- */}
-                <section id='bet_boxes' className='text-center bg-black text-white py-10'>
+                <section id='bet_boxes' className='px-4 text-center bg-black text-white py-10'>
                     <div className="cont">
                         <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                             {/* 100 PKR */}
-                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col  border border-white rounded-lg text-center">
+                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col  border-4 border-dashed border-[#B600D4] rounded-lg text-center">
                                 <p className='text-sm font-light mb-1'>BASIC BET</p>
                                 <h4 className='text-xl font-medium mb-1'>Bet 100 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 5000 PKR</h2>
                                 <Link to="/selectNumber/bet-100" onClick={() => window.scroll(0, 0)} className='gradent px-6 py-2 rounded-md text-sm font-medium'>BET NOW</Link>
                             </div>
                             {/* 200 PKR */}
-                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col  border border-white rounded-lg text-center">
+                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col border-4 border-dashed border-[#B600D4] rounded-lg text-center">
                                 <p className='text-sm font-light mb-1'>STANDARD BET</p>
                                 <h4 className='text-xl font-medium mb-1'>Bet 200 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 10000 PKR</h2>
                                 <Link to="/selectNumber/bet-200" onClick={() => window.scroll(0, 0)} className='gradent px-6 py-2 rounded-md text-sm font-medium'>BET NOW</Link>
                             </div>
                             {/* 500 PKR */}
-                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col  border border-white rounded-lg text-center">
+                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col border-4 border-dashed border-[#B600D4] rounded-lg text-center">
                                 <p className='text-sm font-light mb-1'>PREMIUM BET</p>
                                 <h4 className='text-xl font-medium mb-1'>Bet 500 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 25000 PKR</h2>

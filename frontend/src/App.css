@@ -137,6 +137,16 @@ body::-webkit-scrollbar-thumb {
 }
 
 @media only screen and (max-width: 640px) {
+    .hero_cont {
+        width: 100% !important;
+        margin-inline: auto !important;
+    }
+
+    .cont {
+        width: 100% !important;
+        margin-inline: auto !important;
+    }
+
     .main_cont {
         margin-inline: auto !important;
         padding-top: 2rem;
@@ -153,18 +163,5 @@ body::-webkit-scrollbar-thumb {
 
     .hero_text {
         width: 100% !important;
-    }
-}
-
-
-@media only screen and (max-width: 768px) {
-    .hero_cont {
-        width: 100% !important;
-        margin-inline: auto !important;
-    }
-
-    .cont {
-        width: 90% !important;
-        margin-inline: auto !important;
     }
 }

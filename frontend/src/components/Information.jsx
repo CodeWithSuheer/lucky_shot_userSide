@@ -18,8 +18,8 @@ import ThankYou from "../common/ThankYou/ThankYou";
 
 const TextData = () => {
     return (
-        <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem nam
+        <p className='px-10'>
+            Welcome to Lucky Bet Shot – Where Luck Meets Opportunity! Unleash the thrill of betting on our platform. Your journey to excitement and winning starts here. Bet wisely, win big!
         </p>
     );
 };
