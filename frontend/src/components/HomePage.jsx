@@ -6,7 +6,8 @@ import PKR100 from '../assets/PKR100.png';
 import PKR500 from '../assets/PKR500.png';
 import medal from '../assets/medal.png';
 import Marquee from 'react-fast-marquee';
-
+import WinnerToday from '../common/WinnerComponent/WinnerComponent';
+import { useState } from 'react';
 const TextData = () => {
     return (
         <p>
@@ -48,6 +49,8 @@ const style = {
 }
 
 const HomePage = () => {
+    const [Modal, setModal] = useState(false);
+
     const scrollToSection = () => {
         const section = document.getElementById('bet_boxes');
 
@@ -58,7 +61,15 @@ const HomePage = () => {
             });
         }
     };
+  // HANDLE CLOSE MODAL
+  const handleCloseModal = () => {
+    setModal(false); // Close modal
+};
 
+// HANDLE OPEN MODAL
+const handleOpenModal = () => {
+    setModal(true); // Open modal
+};
     return (
         <>
             <div className="relative">
@@ -169,7 +180,7 @@ const HomePage = () => {
                                                 <span>*********3232</span>
                                             </div>
                                             <div className='bg-gray-400 h-[1px] my-2 w-full'></div>
-                                            <p className='text-sm font-light underline underline-offset-4 cursor-pointer'>View all</p>
+                                            <p className='text-sm font-light underline underline-offset-4 cursor-pointer' onClick={handleOpenModal}>View all</p>
                                         </div>
                                     </div>
                                 </div>
@@ -238,6 +249,10 @@ const HomePage = () => {
                     </div>
                 </section>
             </div>
+{
+    Modal && <WinnerToday isOpen={handleOpenModal} onClose={handleCloseModal} />
+}
+
         </>
     );
 };

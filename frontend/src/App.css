@@ -7,6 +7,7 @@
 body {
     background-color: black !important;
     color: #fff !important;
+    overflow-x: hidden;
 }
 
 body {

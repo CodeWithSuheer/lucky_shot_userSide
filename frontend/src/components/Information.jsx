@@ -151,7 +151,7 @@ const Information = () => {
                     </div>
 
                     {/* --------- THIRD ROW --------- */}
-                    <div className={`grid grid-cols-1 sm:grid-cols-4  gap-3 py-2`}>
+                    <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-6 md:gap-3 py-2`}>
 
                         <label htmlFor="hs-radio-on-right" className="flex gap-3 items-center w-full  rounded-lg text-sm ">
                             <img className='rounded-md  h-8 w-8  ' src="https://play-lh.googleusercontent.com/9-0wlkGycWAJRsuQ-p_bMqDGE0liYgihxKka0PtRjxqEiRVkDKaROEyFxYg520lLbpk" alt="" />
