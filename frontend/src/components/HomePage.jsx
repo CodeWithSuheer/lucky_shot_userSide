@@ -145,7 +145,7 @@ const HomePage = () => {
                         {/* DIVIDER - END*/}
                         <h2 className='text-4xl font-bold mt-3 mb-12'>Draw Timer</h2>
 
-                        <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
+                        <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 place-items-center">
                             {/* LEFT IMAGE */}
                             <div className="w-full max-w-xs text-center">
                                 <img className="object-cover object-center mx-auto rounded-lg" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/LEFT_IMAGE.png?v=1706984254" alt="avatar" />
