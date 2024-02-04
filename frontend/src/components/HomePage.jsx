@@ -20,15 +20,15 @@ const TextData = () => {
 
 const style = {
     main_bg: {
-        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Rectangle_71_1.png?v=1707077397")',
+        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/gRADAINT_1.png?v=1707083850")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "100%",
+        height: "100vh",
         width: "100%",
     },
     left_div: {
-        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Mask_group_1.png?v=1707077355")',
+        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Mask_group_2.png?v=1707084095")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -40,7 +40,7 @@ const style = {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "121rem",
+        height: "14rem",
         width: "100%",
     },
     shadowBlue: {
@@ -134,7 +134,7 @@ const HomePage = () => {
                 </div>
 
                 {/* ----------- DRAW TIMER ----------- */}
-                <section className='px-4 text-center bg-black text-white py-14'>
+                <section className=' text-center bg-black text-white py-14'>
                     <div className="cont">
                         {/* DIVIDER */}
                         <span className="relative max-w-lg mx-auto flex justify-center">
@@ -142,7 +142,7 @@ const HomePage = () => {
                             <span className="relative bg-black z-10 px-2"><img className='h-7' src={crown} alt="" /></span>
                         </span>
                         {/* DIVIDER - END*/}
-                        <h2 className='text-4xl font-bold mt-3 mb-12'>Draw Timer</h2>
+                        <h2 className='text-4xl font-bold mt-3 mb-4 xl:mb-14'>Draw Timer</h2>
 
                         <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 place-items-center">
                             {/* LEFT IMAGE */}
@@ -153,13 +153,13 @@ const HomePage = () => {
                             {/* MIDDLE DATA */}
                             <div className="w-full max-w-xs text-center mt-10 sm:mt-0">
                                 {/* ----------- FIRST TABLE FOR 100 PKR ----------- */}
-                                <div className="timer_100 mb-8">
+                                <div className="timer_100 pt-0 md:pt-9 lg:pt-7 xl:pt-3 mb-8">
                                     <div className="relative border border-white rounded-lg p-2 text-white text-center font-bold bg-black w-full">
                                         <h2 className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white text-black px-10 py-1 rounded-3xl'>
                                             <span className='flex justify-center items-center'>Draw<img className='px-1' src={PKR100} alt="" /> 100PKR</span>
                                         </h2>
 
-                                        <div className="timer_clock pt-4 pb-4 md:pt-4 md:pb-2 lg:pt-6 lg:pb-3 flex items-center justify-center">
+                                        <div className="timer_clock pt-4 pb-4 md:pt-4 md:pb-2 lg:pt-4 lg:pb-1 xl:pt-8 xl:pb-5 flex items-center justify-center">
                                             <div className="ma">
                                                 <span className="hours bg-[#B600D4] text-white h-12 md:h-11 lg:h-12 w-[53px] md:w-[50px] lg:w-[53px] text-3xl md:text-2xl rounded-md flex items-center justify-center">{hours}</span>
                                                 <span className="text-white h-12 w-12 text-sm md:text-xs lg:text-xs font-light">HOURS</span>
@@ -208,7 +208,7 @@ const HomePage = () => {
                                             <span className='flex justify-center items-center'>Draw<img className='px-1' src={PKR500} alt="" /> 500PKR</span>
                                         </h2>
 
-                                        <div className="timer_clock pt-4 pb-4 md:pt-4 md:pb-2 lg:pt-6 lg:pb-3 flex items-center justify-center">
+                                        <div className="timer_clock pt-4 pb-4 md:pt-4 md:pb-2 lg:pt-4 lg:pb-1 xl:pt-8 xl:pb-5 flex items-center justify-center">
                                             <div className="ma">
                                                 <span className="hours bg-[#B600D4] text-white h-12 md:h-11 lg:h-12 w-[53px] md:w-[50px] lg:w-[53px] text-3xl md:text-2xl rounded-md flex items-center justify-center">{hours}</span>
                                                 <span className="text-white h-12 w-12 text-sm md:text-xs lg:text-xs font-light">HOURS</span>
@@ -230,7 +230,7 @@ const HomePage = () => {
 
                             {/* RIGHT IMAGE */}
                             <div className="w-full max-w-xs text-center">
-                                <img className="object-cover object-center w-full mx-auto rounded-lg" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/RIGHT_IMAGE.png?v=1706984256" alt="avatar" />
+                                <img className="object-cover object-center w-full mx-auto rounded-md" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/RIGHT_IMAGE.jpg?v=1707077377" alt="avatar" />
                             </div>
                         </div>
                     </div>
