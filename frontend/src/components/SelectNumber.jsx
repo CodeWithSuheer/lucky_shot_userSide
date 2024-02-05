@@ -94,7 +94,7 @@ export default function () {
           {/* ----------- LOGO IMAGE ----------- */}
           <div className="overflow-hidden flex justify-center md:justify-start mb-8">
             <Link to="/">
-              <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="160" alt="" srcSet="" />
+              <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
             </Link>
           </div>
 

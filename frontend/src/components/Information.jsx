@@ -1,8 +1,5 @@
-import { useState } from 'react';
-import React from 'react';
+import React, { useState } from 'react';
 import Marquee from 'react-fast-marquee';
-import Header from './Header';
-import { MoveUpRight } from 'lucide-react';
 import backgroundimage from '../assets/BG.png'
 import easypaisa from '../assets/easypaisa.png'
 import easy_pasia_logo from '../assets/easy_pasia_logo.png'
@@ -41,42 +38,121 @@ const style = {
 }
 
 const Information = () => {
+    const [Modal, setModal] = useState(false);
     const [activeCard, setActiveCard] = useState(null);
-
     const { id } = useParams();
     const amount = id.split("-")[0];  // USER BET AMOUNT  
     const bet_number = id.split("-")[1]; // USER BET NUMBER
 
 
-    const [Modal, setModal] = useState(false);
-
-
     const [formData, setFormData] = useState({
-        name: "",
-        mobileNumber: "",
-        betAmount: "",
-        accountNumber: "",
-        accountTitle: "",
-        additionalFile: null, // Store file data here
+        betAmount: parseInt(amount),
+        betNumber: parseInt(bet_number),
+        name: '',
+        mobileNumber: '',
+        prizeAcntInfo: {
+            acntTitle: '',
+            acntNumber: '',
+            paymentMethod: '',
+        },
+        accountUsed: {
+            Id: '65be584d641dc8c13cd31e3a',
+            number: '',
+        },
+        additionalFile: null,
     });
 
     const handleChange = (e, field) => {
-        if (field === "AdditionalFile") {
-            // Handle file input separately
-            setFormData({ ...formData, additionalFile: e.target.files[0] });
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [field]: e.target.value,
+        }));
+    };
+
+    const handleRadioChange = (e, field) => {
+        handleChange(e, field);
+    };
+
+    const handlePaymentMethodChange = (method) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            prizeAcntInfo: {
+                ...prevFormData.prizeAcntInfo,
+                paymentMethod: method,
+            },
+        }));
+    };
+
+    const handleNestedChange = (parentField, childField, value) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            [parentField]: {
+                ...prevFormData[parentField],
+                [childField]: value,
+            },
+        }));
+    };
+
+    const handleFileChange = (e) => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            additionalFile: e.target.files[0],
+        }));
+    };
+
+    const handleCardClick = (accountType) => {
+        setActiveCard(accountType);
+
+        // Update the account number in formData based on the selected account type
+        const accountNumbers = {
+            jazzcash: '0332 2323232', // Replace with the actual Jazz Cash account number
+            easypaisa: '0332 2323232', // Replace with the actual EasyPaisa account number
+        };
+
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            accountUsed: {
+                ...prevFormData.accountUsed,
+                number: accountNumbers[accountType] || '', // Set the account number based on the selected account type
+            },
+        }));
+    };
+
+
+    const renderAccountDetails = () => {
+        if (activeCard === 'easypaisa') {
+            return (
+                <div className={`block w-full rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
+                    <img className='rounded-sm w-15 h-10 pb-2' src={easypaisa} alt="" />
+                    <p className='text-white font-medium text-sm '>Account Number:</p>
+                    <p className='text-gray-200 text-sm font-light my-1'>0332 2323232</p>
+                    <p className='text-white mt-2 font-medium text-md'>Account Title:</p>
+                    <p className='text-gray-200 text-sm'>Umer EasyPaisa</p>
+                </div>
+            );
+        } else if (activeCard === 'jazzcash') {
+            return (
+                <div className={`block w-full rounded-md border ${activeCard === 'jazzcash' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('jazzcash')}>
+                    <img className='rounded-md w-15 h-10 pb-2' src={jazzcash} alt="" />
+                    <p className='text-white text-sm'>Account Number:</p>
+                    <p className='text-gray-200 text-sm font-light my-1'>0332 2323232</p>
+                    <p className='text-white mt-2 text-md'>Account Title:</p>
+                    <p className='text-gray-200 text-sm'>Suheer Jazz Cash</p>
+                </div>
+            );
         } else {
-            setFormData({ ...formData, [field]: e.target.value });
+            return (
+                <div className={`flex justify-center items-center text-center w-full h-48 rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
+                    <p className='text-lg md:text-md lg:text-lg tracking-wide'>Choose any account for more details</p>
+                </div>
+            );
         }
     };
 
-    const handleSubmit = () => {
-        // Implement your form submission logic here
-    };
-
-    const handleCardClick = (card) => {
-        setActiveCard(card);
-    };
-
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('formData', formData);
+    }
 
     // HANDLE CLOSE MODAL
     const handleCloseModal = () => {
@@ -87,6 +163,8 @@ const Information = () => {
     const handleOpenModal = () => {
         setModal(true); // Open modal
     };
+
+    // console.log('formData', formData);
 
     return (
         <>
@@ -105,7 +183,7 @@ const Information = () => {
                     {/* ----------- LOGO IMAGE ----------- */}
                     <div className="overflow-hidden flex justify-center md:justify-start mb-8">
                         <Link to="/">
-                            <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="160" alt="" srcSet="" />
+                            <img src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
                         </Link>
                     </div>
 
@@ -114,7 +192,6 @@ const Information = () => {
                         <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-75"></div>
                         <span className="relative bg-black z-10 px-2"><img className='h-7' src={crown} alt="" /></span>
                     </span>
-
 
                     <h4 className="text-xl md:text-4xl tracking-wider font-bold text-white text-center py-3">Enter Your Information</h4>
 
@@ -133,8 +210,8 @@ const Information = () => {
                         </div>
                         <div>
                             <label className="block mb-2 text-sm font-medium text-gray-200 ">Bet Amount</label>
-                            <input required type="number" placeholder="Bet Amount" value={amount}
-                                onChange={(e) => handleChange(e, "betAmount")} className="block w-full px-5 py-4 mt-2 rounded-md text-gray-200 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none" />
+                            <input required type="number" placeholder="Bet Amount" value={amount} disabled
+                                className="block w-full px-5 py-4 mt-2 rounded-md text-gray-200 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none" />
                         </div>
                     </div>
 
@@ -144,48 +221,82 @@ const Information = () => {
                     <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 pt-4 pb-7`}>
                         <div>
                             <label className="block mb-2  text-sm font-medium text-gray-200">Account No <span className='text-red-500'>*</span></label>
-                            <input required type="tel" placeholder="Account No" value={formData.accountNumber}
-                                onChange={(e) => handleChange(e, "accountNumber")} className="block w-full rounded-md px-5 py-4 mt-2 text-gray-100 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none" />
+                            <input
+                                required
+                                type="text"
+                                placeholder="Account Title"
+                                value={formData.prizeAcntInfo.acntNumber}
+                                onChange={(e) => handleNestedChange('prizeAcntInfo', 'acntNumber', e.target.value)}
+                                className="block w-full rounded-md px-5 py-4 mt-2 text-gray-100 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none"
+                            />
                         </div>
-
 
                         <div>
-                            <label className="block mb-2 text-sm font-medium text-gray-200">Account Tittle <span className='text-red-500'>*</span></label>
-                            <input required type="text" placeholder="Account Title " value={formData.accountTitle}
-                                onChange={(e) => handleChange(e, "accountTitle")} className="block w-full rounded-md px-5 py-4 mt-2 text-gray-100 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none" />
+                            <label className="block mb-2 text-sm font-medium text-gray-200">Account Title <span className='text-red-500'>*</span></label>
+                            <input
+                                required
+                                type="text"
+                                placeholder="Account Title"
+                                value={formData.prizeAcntInfo.acntTitle}
+                                onChange={(e) => handleNestedChange('prizeAcntInfo', 'acntTitle', e.target.value)}
+                                className="block w-full rounded-md px-5 py-4 mt-2 text-gray-100 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none"
+                            />
                         </div>
-
-
                     </div>
 
                     {/* --------- THIRD ROW --------- */}
                     <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-3 py-2`}>
-
-                        <label htmlFor="hs-radio-on-right" className="flex gap-3 items-center w-full  rounded-lg text-sm ">
+                        <label htmlFor="hs-radio-on-right" className="flex gap-3 items-center w-full rounded-lg text-sm ">
                             <img className='rounded-md h-8 w-8' src="https://play-lh.googleusercontent.com/9-0wlkGycWAJRsuQ-p_bMqDGE0liYgihxKka0PtRjxqEiRVkDKaROEyFxYg520lLbpk" alt="" />
                             <span className="text-lg  text-gray-500 w-24">Jazz Cash</span>
-
-                            <input type="radio" required name="hs-radio-on-right" className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4]" id="hs-radio-on-right" />
+                            <input
+                                type="radio"
+                                required
+                                name="hs-radio-on-right"
+                                className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4]"
+                                id="hs-radio-on-right"
+                                onChange={() => handlePaymentMethodChange('Jazz Cash')}
+                            />
                         </label>
 
-                        <label htmlFor="hs-radioradio-on-right" className="flex gap-3  items-center  w-full  rounded-lg text-sm ">
+                        <label htmlFor="hs-radioradio-on-right" className="flex gap-3 items-center w-full rounded-lg text-sm ">
                             <img className='rounded-md h-8 w-8' src={sadapay} alt="" />
                             <span className="text-lg  text-gray-500 w-24">Sada Pay</span>
-
-                            <input type="radio" required name="hs-radio-on-right" className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4] " id="hs-radioradio-on-right" />
+                            <input
+                                type="radio"
+                                required
+                                name="hs-radio-on-right"
+                                className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4]"
+                                id="hs-radioradio-on-right"
+                                onChange={() => handlePaymentMethodChange('Sadapay')}
+                            />
                         </label>
-                        <label htmlFor="hs-radio-on-right11" className="flex gap-3 items-center w-full  rounded-lg text-sm ">
+
+                        <label htmlFor="hs-radio-on-right11" className="flex gap-3 items-center w-full rounded-lg text-sm ">
                             <img className='rounded-md h-8 w-8' src={easy_pasia_logo} alt="" />
                             <span className="text-lg  text-gray-500 w-24">Easy Paisa</span>
-                            <input type="radio" required name="hs-radio-on-right" className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4] " id="hs-radio-on-right11" />
+                            <input
+                                type="radio"
+                                required
+                                name="hs-radio-on-right"
+                                className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4]"
+                                id="hs-radio-on-right11"
+                                onChange={() => handlePaymentMethodChange('Easy Paisa')}
+                            />
                         </label>
 
-                        <label htmlFor="hs-radioradio-on-right22" className="flex gap-3 items-center w-full  rounded-lg text-sm ">
+                        <label htmlFor="hs-radioradio-on-right22" className="flex gap-3 items-center w-full rounded-lg text-sm ">
                             <img className='rounded-md h-8 w-8' src={nayapay} alt="" />
                             <span className="text-lg  text-gray-500 w-24">Naya Pay</span>
-                            <input type="radio" required name="hs-radio-on-right" className="mt-0.5 border-gray-200 rounded-full  accent-[#B600D4] " id="hs-radioradio-on-right22" />
+                            <input
+                                type="radio"
+                                required
+                                name="hs-radio-on-right"
+                                className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4]"
+                                id="hs-radioradio-on-right22"
+                                onChange={() => handlePaymentMethodChange('Naya Pay')}
+                            />
                         </label>
-
                     </div>
 
                     <h4 className="text-lg md:text-3xl font-medium text-white text-center mt-12 mb-3">Send Money</h4>
@@ -197,66 +308,55 @@ const Information = () => {
 
                         <div>
                             <label
-                                htmlFor="DeliveryStandard"
-                                className="flex cursor-pointer justify-between gap-4 rounded-lg border border-[#B600D4] bg-transparent  p-4 px-4 text-sm font-medium shadow-sm has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
+                                htmlFor="jazzcash"
+                                className="flex cursor-pointer justify-between gap-4 rounded-lg border border-[#B600D4] bg-transparent  p-4 px-4 text-sm font-medium shadow-sm"
                             >
-                                <div><p className="text-white flex items-center text-xl"> <img className='rounded-sm w-12 h-7 mr-2' src={jazzcash} alt="" />Jazz Cash</p>
+                                <div>
+                                    <p className="text-white flex items-center text-xl">
+                                        <img className='rounded-sm w-12 h-7 mr-2' src={jazzcash} alt="" />
+                                        Jazz Cash
+                                    </p>
                                 </div>
 
                                 <input
                                     type="radio"
-                                    name="DeliveryOption"
-                                    value="DeliveryStandard"
-                                    id="DeliveryStandard"
+                                    name="accountType"
+                                    value="jazzcash"
+                                    id="jazzcash"
                                     className="h-5 w-5 border-gray-300 text-blue-500"
-                                // checked
+                                    onChange={() => handleCardClick('jazzcash')}
                                 />
                             </label>
                         </div>
 
                         <div>
                             <label
-                                htmlFor="DeliveryPriority"
-                                className="flex cursor-pointer justify-between gap-4 rounded-lg border border-[#B600D4] bg-transparent p-4 px-4 text-sm font-medium shadow-sm has-[:checked]:border-blue-500 has-[:checked]:ring-1 has-[:checked]:ring-blue-500"
+                                htmlFor="easypaisa"
+                                className="flex cursor-pointer justify-between gap-4 rounded-lg border border-[#B600D4] bg-transparent p-4 px-4 text-sm font-medium shadow-sm"
                             >
-                                <div><p className="text-white flex items-center text-xl"> <img className='rounded-sm w-7 h-7 mr-2' src={easypaisa} alt="" />EasyPaisa</p>
+                                <div>
+                                    <p className="text-white flex items-center text-xl">
+                                        <img className='rounded-sm w-7 h-7 mr-2' src={easypaisa} alt="" />
+                                        EasyPaisa
+                                    </p>
                                 </div>
 
                                 <input
                                     type="radio"
-                                    name="DeliveryOption"
-                                    value="DeliveryPriority"
-                                    id="DeliveryPriority"
+                                    name="accountType"
+                                    value="easypaisa"
+                                    id="easypaisa"
                                     className="h-5 w-5 border-gray-300 text-blue-500"
+                                    onChange={() => handleCardClick('easypaisa')}
                                 />
                             </label>
                         </div>
                     </fieldset>
 
 
-
                     <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 py-6`}>
                         <div className="flex gap-3 sm:gap-5 items-center">
-
-                            <div className={`flex justify-center items-center text-center w-full h-48 rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
-                                <p className='text-lg md:text-md lg:text-lg tracking-wide'>Choose any account for more details</p>
-                            </div>
-
-                            {/* <div className={`block w-full rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
-                                <img className='rounded-sm w-15 h-10 pb-2' src={easypaisa} alt="" />
-                                <p className='text-white font-medium text-sm '>Account Number:</p>
-                                <p className='text-gray-200 text-sm font-light my-1'>0332 2323232</p>
-                                <p className='text-white mt-2 font-medium text-md'>Account Title:</p>
-                                <p className='text-gray-200 text-sm'>Umer</p>
-                            </div> */}
-
-                            {/* <div className={`block w-full rounded-md border ${activeCard === 'jazzcash' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('jazzcash')}>
-                                <img className='rounded-md w-15 h-10 pb-2' src={jazzcash} alt="" />
-                                <p className='text-white text-sm'>Account Number:</p>
-                                <p className='text-gray-200 text-sm font-light my-1'>0332 2323232</p>
-                                <p className='text-white mt-2 text-md'>Account Title:</p>
-                                <p className='text-gray-200 text-sm'>Suheer Zahid</p>
-                            </div> */}
+                            {renderAccountDetails()}
                         </div>
 
                         <div className='col-span-1 lg:col-span-2'>
@@ -268,7 +368,6 @@ const Information = () => {
                                         name="AdditionalFile"
                                         className="ModelFileDropField absolute w-[100px] h-10 opacity-0 cursor-pointer"
                                         onChange={(e) => handleChange(e, "AdditionalFile")}
-                                        required
                                     />
                                     <div className="flex gap-1 items-center">
                                         <FileUp size={25} />
@@ -284,7 +383,10 @@ const Information = () => {
                     </div>
 
                     <div className="flex justify-center items-center py-5">
-                        <Button onClick={() => setModal(!Modal)} className='gradent rounded-md text-md px-8 tracking-wider text-white font-medium' variant="solid">
+                        <Button
+                            type='submit'
+                            // onClick={() => setModal(!Modal)}
+                            className='gradent rounded-md text-md px-8 tracking-wider text-white font-medium' variant="solid">
                             Submit
                         </Button>
                     </div>

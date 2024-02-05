@@ -112,7 +112,7 @@ const HomePage = () => {
                 </div>
 
                 {/* ----------- HERO SECTION ----------- */}
-                <section className="lg:px-0 pt-20 lg:pt-20 pb-20 lg:pb-44 mx-auto" style={isMobile ? null : style.main_bg}>
+                <section className="lg:px-0 pt-20 lg:pt-16 pb-20 lg:pb-44 mx-auto" style={isMobile ? null : style.main_bg}>
                     <div className="items-center hero_cont lg:flex">
 
                         <div className="px-5 w-full lg:w-1/2" style={isMobile ? style.left_div : null}>
@@ -127,7 +127,7 @@ const HomePage = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-center w-full mt-12 -mb-20 lg:mt-0 lg:w-1/2">
+                        <div className="flex items-center justify-center w-full mt-14 -mb-20 lg:mt-0 lg:w-1/2">
                             <img className="w-full h-[330px] flex md:hidden lg:max-w-3xl" style={{ objectFit: 'cover' }} src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Rectangle_71.jpg?v=1707132317" alt="Catalogue-pana.svg" />
                         </div>
                     </div>
@@ -244,21 +244,21 @@ const HomePage = () => {
                     <div className="cont">
                         <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                             {/* 100 PKR */}
-                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col  border-5 border-dashed border-[#B600D4] rounded-lg text-center">
+                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col  border-[4px] sm:border-[5px] border-dashed border-[#B600D4] rounded-lg text-center">
                                 <p className='absolute top-0 bg-[#B600D4] px-6 py-2 rounded-b-lg text-sm font-light mb-1'>BASIC BET</p>
                                 <h4 className='text-xl font-medium mt-4 mb-1'>Bet 100 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 5000 PKR</h2>
                                 <Link to="/selectNumber/bet-100" onClick={() => window.scroll(0, 0)} className='gradent px-6 py-2 rounded-md text-sm font-medium'>BET NOW</Link>
                             </div>
                             {/* 200 PKR */}
-                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col border-4 border-dashed border-[#B600D4] rounded-lg text-center">
+                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col border-[4px] sm:border-[5px] border-dashed border-[#B600D4] rounded-lg text-center">
                                 <p className='absolute top-0 bg-[#B600D4] px-6 py-2 rounded-b-lg text-sm font-light mb-1'>STANDARD BET</p>
                                 <h4 className='text-xl font-medium mt-4 mb-1'>Bet 200 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 10000 PKR</h2>
                                 <Link to="/selectNumber/bet-200" onClick={() => window.scroll(0, 0)} className='gradent px-6 py-2 rounded-md text-sm font-medium'>BET NOW</Link>
                             </div>
                             {/* 500 PKR */}
-                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col border-4 border-dashed border-[#B600D4] rounded-lg text-center">
+                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col border-[4px] sm:border-[5px] border-dashed border-[#B600D4] rounded-lg text-center">
                                 <p className='absolute top-0 bg-[#B600D4] px-6 py-2 rounded-b-lg text-sm font-light mb-1'>PREMIUM BET</p>
                                 <h4 className='text-xl font-medium mt-4 mb-1'>Bet 500 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 25000 PKR</h2>
