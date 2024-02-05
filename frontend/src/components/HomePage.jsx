@@ -138,9 +138,10 @@ const HomePage = () => {
                     <div className="cont">
 
                         {/* DIVIDER */}
-                        <span className="relative max-w-lg mx-auto flex justify-center">
-                            <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-75"></div>
-                            <span className="relative bg-black z-10 px-2"><img className='h-7' src={crown} alt="" /></span>
+                        <span className="flex items-center w-48 md:w-72 mb-5 mx-auto">
+                            <span className="h-px mt-3 flex-1 bg-gray-300 opacity-75"></span>
+                            <span className="shrink-0 px-2"><img className='h-7' src={crown} alt="" /></span>
+                            <span className="h-px mt-3 flex-1 bg-gray-300 opacity-75"></span>
                         </span>
                         {/* DIVIDER - END*/}
                         <h2 className='text-4xl tracking-wide font-bold mt-3 mb-7 xl:mb-14'>Draw Timer</h2>

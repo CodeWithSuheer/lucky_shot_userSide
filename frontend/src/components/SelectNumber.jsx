@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Marquee from 'react-fast-marquee';
 import { Button } from "@nextui-org/react";
 import { Toaster, toast } from "react-hot-toast";
@@ -18,7 +18,15 @@ const TextData = () => {
 
 const style = {
   main_bg: {
-    backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/BG.png?v=1706958005")',
+    backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Group_1001.png?v=1707077440")',
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat",
+    height: "100%",
+    width: "100%",
+  },
+  mobile_view: {
+    backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/bg_gradaint.png?v=1707160504")',
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
@@ -39,6 +47,19 @@ export default function () {
   const navigate = useNavigate()
   const [selectedNumbers, setSelectedNumbers] = useState([]);
   const [Modal, setModal] = useState(false); // Initialize Modal as false
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   // HANDLE NUMBER CLICK
   const handleNumberClick = (number) => {
@@ -81,7 +102,7 @@ export default function () {
 
   return (
     <>
-      <section className="relative" style={style.main_bg}>
+      <section className="relative" style={isMobile ? style.mobile_view : style.main_bg}>
         {/* ----------- HEADER ----------- */}
         <div style={{ ...style.shadowBlue, zIndex: 999 }} className="absolute w-full header bg-[#0035D4] text-white py-2 text-sm">
           <Marquee speed={70}>
@@ -99,14 +120,20 @@ export default function () {
           </div>
 
           {/* ----------- DIVIDER ----------- */}
-          <span className="relative mb-5 max-w-md mx-auto flex justify-center">
+          {/* <span className="relative mb-5 max-w-md mx-auto flex justify-center">
             <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-75"></div>
             <span className="relative bg-black z-10 px-2"><img className='h-7' src={crown} alt="" /></span>
+          </span> */}
+          <span className="flex items-center w-48 md:w-72 mb-5 mx-auto">
+            <span className="h-px mt-3 flex-1 bg-gray-300 opacity-75"></span>
+            <span className="shrink-0 px-2"><img className='h-7' src={crown} alt="" /></span>
+            <span className="h-px mt-3 flex-1 bg-gray-300 opacity-75"></span>
           </span>
+
 
           {/* HEADING */}
           <div className="flex flex-wrap justify-center items-center">
-            <h4 className="text-xl sm:text-4xl tracking-wider font-bold text-white text-center">Select Your Max 3 Numbers</h4>
+            <h4 className="text-lg sm:text-4xl tracking-wider font-bold text-white text-center">Select Your Max 3 Numbers</h4>
           </div>
 
 
