@@ -90,7 +90,7 @@ export default function () {
           </Marquee>
         </div>
 
-        <div className="cont pt-16 ">
+        <div className="number_info_width pt-16 ">
           {/* ----------- LOGO IMAGE ----------- */}
           <div className="overflow-hidden flex justify-center md:justify-start mb-8">
             <Link to="/">
@@ -112,7 +112,6 @@ export default function () {
 
           {/* NUMBER BOX */}
           <div className="sm:max-w-xl mx-auto">
-
             <div className="flex flex-wrap justify-center items-center">
               <div className={`bg-[#474747] border-2 border-[#B600D4] w-full border-dashed rounded-md px-2 sm:px-2 py-5 sm:py-10 my-3 sm:my-5 flex justify-center items-center flex-wrap`}>
                 {[1, 5, 2, 0, 4, 9, 3, 6, 8, 7].map((number, index) => (

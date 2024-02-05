@@ -24,15 +24,15 @@ const style = {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "100vh",
+        height: "100%",
         width: "100%",
     },
     left_div: {
-        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Mask_group_2.png?v=1707084095")',
+        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Mask_group_4.png?v=1707135177")',
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundPosition: "top ",
         backgroundRepeat: "no-repeat",
-        height: "100vh",
+        height: "",
         width: "100%",
     },
     box_div: {
@@ -40,7 +40,7 @@ const style = {
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "14rem",
+        height: "13.5rem",
         width: "100%",
     },
     shadowBlue: {
@@ -112,7 +112,7 @@ const HomePage = () => {
                 </div>
 
                 {/* ----------- HERO SECTION ----------- */}
-                <div className="lg:px-0 pt-20 lg:pt-20 pb-16 mx-auto" style={isMobile ? null : style.main_bg}>
+                <section className="lg:px-0 pt-20 lg:pt-20 pb-20 lg:pb-44 mx-auto" style={isMobile ? null : style.main_bg}>
                     <div className="items-center hero_cont lg:flex">
 
                         <div className="px-5 w-full lg:w-1/2" style={isMobile ? style.left_div : null}>
@@ -120,22 +120,23 @@ const HomePage = () => {
                                 <img className='overflow-hidden mx-auto md:mx-0' src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454" width="150" alt="" srcSet="" />
 
                                 <h2 className='hero_title mb-4'>Play With <br /> Lucky Bet Shot</h2>
-                                <p className="hero_text mt-3 text-gray-400 mb-5">Discover the excitement at Lucky Bet Shot! Place your bets and test your luck for big wins. A trusted platform for thrilling experiences. Join us now!</p>
+                                <p className="hero_text mt-3 text-md md:text-sm lg:text-md xl:text-md text-gray-300 mb-5">Discover the excitement at Lucky Bet Shot! Place your bets and test your luck for big wins. A trusted platform for thrilling experiences. Join us now!</p>
                                 <Button onClick={scrollToSection} className='gradent px-6 rounded-md text-sm tracking-wider text-white font-medium' variant="solid">
                                     BET NOW
                                 </Button>
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-center w-full mt-6 lg:mt-0 lg:w-1/2">
-                            <img className="w-full h-full flex md:hidden lg:max-w-3xl" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Rectangle_71.png?v=1707077354" alt="Catalogue-pana.svg" />
+                        <div className="flex items-center justify-center w-full -mb-20 lg:mt-0 lg:w-1/2">
+                            <img className="w-full h-[330px] flex md:hidden lg:max-w-3xl" style={{ objectFit: 'cover' }} src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Rectangle_71.jpg?v=1707132317" alt="Catalogue-pana.svg" />
                         </div>
                     </div>
-                </div>
+                </section>
 
                 {/* ----------- DRAW TIMER ----------- */}
-                <section className=' text-center bg-black text-white py-14'>
+                <section className='md:px-2 text-center bg-black text-white py-14'>
                     <div className="cont">
+
                         {/* DIVIDER */}
                         <span className="relative max-w-lg mx-auto flex justify-center">
                             <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-75"></div>
@@ -145,21 +146,22 @@ const HomePage = () => {
                         <h2 className='text-4xl font-bold mt-3 mb-4 xl:mb-14'>Draw Timer</h2>
 
                         <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 place-items-center">
+
                             {/* LEFT IMAGE */}
-                            <div className="w-full max-w-xs text-center">
-                                <img className="object-cover object-center mx-auto rounded-lg" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/LEFT_IMAGE.png?v=1706984254" alt="avatar" />
+                            <div className="w-full md:px-0 text-center">
+                                <img className="px-5 lg:px-0 mx-auto w-full h-full" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/LEFT_IMAGE_1.png?v=1707131696" alt="avatar" />
                             </div>
 
                             {/* MIDDLE DATA */}
-                            <div className="w-full max-w-xs text-center mt-10 sm:mt-0">
+                            <div className="w-full md:px-0 text-center mt-10 sm:mt-0">
                                 {/* ----------- FIRST TABLE FOR 100 PKR ----------- */}
-                                <div className="timer_100 pt-0 md:pt-9 lg:pt-7 xl:pt-3 mb-8">
-                                    <div className="relative border border-white rounded-lg p-2 text-white text-center font-bold bg-black w-full">
+                                <div className="timer_100 px-5 lg:px-0 pt-0 md:pt-9 lg:pt-7 xl:pt-3 mb-8">
+                                    <div className="relative border border-white rounded-2xl p-2 text-white text-center font-bold bg-black w-full">
                                         <h2 className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white text-black px-10 py-1 rounded-3xl'>
                                             <span className='flex justify-center items-center'>Draw<img className='px-1' src={PKR100} alt="" /> 100PKR</span>
                                         </h2>
 
-                                        <div className="timer_clock pt-4 pb-4 md:pt-4 md:pb-2 lg:pt-4 lg:pb-1 xl:pt-8 xl:pb-5 flex items-center justify-center">
+                                        <div className="timer_clock pt-8 pb-4 md:pt-4 md:pb-2 lg:pt-4 lg:pb-1 xl:pt-8 xl:pb-5 flex items-center justify-center">
                                             <div className="ma">
                                                 <span className="hours bg-[#B600D4] text-white h-12 md:h-11 lg:h-12 w-[53px] md:w-[50px] lg:w-[53px] text-3xl md:text-2xl rounded-md flex items-center justify-center">{hours}</span>
                                                 <span className="text-white h-12 w-12 text-sm md:text-xs lg:text-xs font-light">HOURS</span>
@@ -178,20 +180,20 @@ const HomePage = () => {
                                     </div>
                                 </div>
                                 {/* ----------- FIRST TABLE FOR 200 PKR ----------- */}
-                                <div className="timer_100 mb-8">
-                                    <div className="relative border border-white rounded-lg p-4 text-white text-center font-bold bg-black w-full">
+                                <div className="timer_100 px-5 lg:px-0 mb-8">
+                                    <div className="relative border border-white rounded-2xl p-4 text-white text-center font-bold bg-black w-full">
                                         <h2 className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white text-black py-1 rounded-3xl'>
                                             <span className='flex justify-center items-center w-48'><img className='px-1' src={medal} alt="" /> Today Winners</span>
                                         </h2>
 
                                         <div className="timer_clock mt-4 mb-0 flex flex-col items-center justify-center">
-                                            <div className="flex justify-between items-center gap-7 text-sm md:text-xs lg:text-xs font-normal">
+                                            <div className="flex justify-between items-center gap-7 text-xs md:text-xs lg:text-xs font-normal">
                                                 <span className='flex items-center'><img className='px-1 h-4' src={medal} alt="" />UmerJaviad</span>
                                                 <span>1122</span>
                                                 <span>*********3232</span>
                                             </div>
                                             <div className='bg-gray-400 h-[1px] my-2 w-full'></div>
-                                            <div className="flex justify-between items-center gap-7 text-sm md:text-xs lg:text-xs font-normal">
+                                            <div className="flex justify-between items-center gap-7 text-xs md:text-xs lg:text-xs font-normal">
                                                 <span className='flex items-center'><img className='px-1 h-4' src={medal} alt="" />UmerJaviad</span>
                                                 <span>1122</span>
                                                 <span>*********3232</span>
@@ -202,13 +204,13 @@ const HomePage = () => {
                                     </div>
                                 </div>
                                 {/* ----------- FIRST TABLE FOR 500 PKR ----------- */}
-                                <div className="timer_100 mb-8">
-                                    <div className="relative border border-white rounded-lg p-2 text-white text-center font-bold bg-black w-full">
+                                <div className="timer_100 px-5 lg:px-0 mb-8">
+                                    <div className="relative border border-white rounded-2xl p-2 text-white text-center font-bold bg-black w-full">
                                         <h2 className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white text-black px-10 py-1 rounded-3xl'>
                                             <span className='flex justify-center items-center'>Draw<img className='px-1' src={PKR500} alt="" /> 500PKR</span>
                                         </h2>
 
-                                        <div className="timer_clock pt-4 pb-4 md:pt-4 md:pb-2 lg:pt-4 lg:pb-1 xl:pt-8 xl:pb-5 flex items-center justify-center">
+                                        <div className="timer_clock pt-8 pb-4 md:pt-4 md:pb-2 lg:pt-4 lg:pb-1 xl:pt-8 xl:pb-5 flex items-center justify-center">
                                             <div className="ma">
                                                 <span className="hours bg-[#B600D4] text-white h-12 md:h-11 lg:h-12 w-[53px] md:w-[50px] lg:w-[53px] text-3xl md:text-2xl rounded-md flex items-center justify-center">{hours}</span>
                                                 <span className="text-white h-12 w-12 text-sm md:text-xs lg:text-xs font-light">HOURS</span>
@@ -229,35 +231,36 @@ const HomePage = () => {
                             </div>
 
                             {/* RIGHT IMAGE */}
-                            <div className="w-full max-w-xs text-center">
-                                <img className="object-cover object-center w-full mx-auto rounded-md" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/RIGHT_IMAGE.jpg?v=1707077377" alt="avatar" />
+                            <div className="w-full md:px-0 text-center">
+                                <img className="px-5 lg:px-0 mx-auto w-full h-full" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/RIGHT_IMAGE_1.png?v=1707131698" alt="avatar" />
                             </div>
+
                         </div>
                     </div>
                 </section>
 
                 {/* ----------- BET BOXES ----------- */}
-                <section id='bet_boxes' className='px-4 text-center bg-black text-white py-10'>
+                <section id='bet_boxes' className='px-5 md:px-2 text-center bg-black text-white py-10'>
                     <div className="cont">
                         <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                             {/* 100 PKR */}
-                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col  border-4 border-dashed border-[#B600D4] rounded-lg text-center">
-                                <p className='text-sm font-light mb-1'>BASIC BET</p>
-                                <h4 className='text-xl font-medium mb-1'>Bet 100 PKR</h4>
+                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col  border-5 border-dashed border-[#B600D4] rounded-lg text-center">
+                                <p className='absolute top-0 bg-[#B600D4] px-6 py-2 rounded-b-lg text-sm font-light mb-1'>BASIC BET</p>
+                                <h4 className='text-xl font-medium mt-4 mb-1'>Bet 100 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 5000 PKR</h2>
                                 <Link to="/selectNumber/bet-100" onClick={() => window.scroll(0, 0)} className='gradent px-6 py-2 rounded-md text-sm font-medium'>BET NOW</Link>
                             </div>
                             {/* 200 PKR */}
-                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col border-4 border-dashed border-[#B600D4] rounded-lg text-center">
-                                <p className='text-sm font-light mb-1'>STANDARD BET</p>
-                                <h4 className='text-xl font-medium mb-1'>Bet 200 PKR</h4>
+                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col border-4 border-dashed border-[#B600D4] rounded-lg text-center">
+                                <p className='absolute top-0 bg-[#B600D4] px-6 py-2 rounded-b-lg text-sm font-light mb-1'>STANDARD BET</p>
+                                <h4 className='text-xl font-medium mt-4 mb-1'>Bet 200 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 10000 PKR</h2>
                                 <Link to="/selectNumber/bet-200" onClick={() => window.scroll(0, 0)} className='gradent px-6 py-2 rounded-md text-sm font-medium'>BET NOW</Link>
                             </div>
                             {/* 500 PKR */}
-                            <div style={style.box_div} className="my-3 md:my-0 flex justify-center items-center flex-col border-4 border-dashed border-[#B600D4] rounded-lg text-center">
-                                <p className='text-sm font-light mb-1'>PREMIUM BET</p>
-                                <h4 className='text-xl font-medium mb-1'>Bet 500 PKR</h4>
+                            <div style={style.box_div} className="relative my-3 md:my-0 flex justify-center items-center flex-col border-4 border-dashed border-[#B600D4] rounded-lg text-center">
+                                <p className='absolute top-0 bg-[#B600D4] px-6 py-2 rounded-b-lg text-sm font-light mb-1'>PREMIUM BET</p>
+                                <h4 className='text-xl font-medium mt-4 mb-1'>Bet 500 PKR</h4>
                                 <h2 className='text-2xl tracking-wide font-semibold mb-2.5'>Win 25000 PKR</h2>
                                 <Link to="/selectNumber/bet-500" onClick={() => window.scroll(0, 0)} className='gradent px-6 py-2 rounded-md text-sm font-medium'>BET NOW</Link>
                             </div>
@@ -270,7 +273,6 @@ const HomePage = () => {
             {
                 Modal && <WinnerToday isOpen={handleOpenModal} onClose={handleCloseModal} />
             }
-
         </>
     );
 };

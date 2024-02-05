@@ -67,10 +67,26 @@ body::-webkit-scrollbar-thumb {
     background: linear-gradient(180deg, rgba(182, 1, 212, 1) 21%, rgba(79, 39, 177, 1) 83%) !important;
 }
 
+.special_padding {
+    padding-inline: 0rem !important;
+}
+
+.number_info_width {
+    width: 75% !important;
+    margin-inline: auto !important;
+}
+
+
+
 /* --------------- MEDIA QUERY ---------------  */
 
 @media only screen and (max-width: 1280px) {
     .hero_cont {
+        width: 82% !important;
+        margin-inline: auto !important;
+    }
+
+    .number_info_width {
         width: 82% !important;
         margin-inline: auto !important;
     }
@@ -112,7 +128,7 @@ body::-webkit-scrollbar-thumb {
 
     .hero_text {
         line-height: 1.6 !important;
-        width: 90% !important;
+        width: 85% !important;
     }
 }
 
@@ -143,7 +159,12 @@ body::-webkit-scrollbar-thumb {
     }
 
     .cont {
-        width: 95% !important;
+        width: 100% !important;
+        margin-inline: auto !important;
+    }
+
+    .number_info_width {
+        width: 93% !important;
         margin-inline: auto !important;
     }
 
@@ -163,5 +184,19 @@ body::-webkit-scrollbar-thumb {
 
     .hero_text {
         width: 100% !important;
+    }
+}
+
+
+@media only screen and (max-width: 375px) {
+    .special_padding {
+        padding-inline: 1.3rem !important;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .special_padding {
+        padding-inline: 0rem !important;
+        margin-inline: .5rem !important;
     }
 }
