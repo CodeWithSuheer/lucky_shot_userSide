@@ -49,7 +49,7 @@ const WinnerToday = ({ isOpen, onClose }) => {
     ];
 
     return (
-        <Modal backdrop="blur" size='3xl' placement="center" isOpen={isOpen} onClose={onClose} className=" flex flex-wrap flex-col py-1 px-1 sm:px-6">
+        <Modal backdrop="blur" size='3xl' placement="center" isOpen={isOpen} onClose={onClose} className=" flex flex-wrap flex-col py-1 px-0 sm:px-6">
             <ModalContent>
                 <>
                     <ModalHeader className="flex flex-col justify-center items-center">
@@ -68,19 +68,20 @@ const WinnerToday = ({ isOpen, onClose }) => {
                     <ModalBody>
 
                         {tableData.map((rowData, index) => (
-                            <div key={index} className="flex justify-between items-center gap-4 px-2 md:gap-2 border-b border-red py-1">
+                            <div key={index} className="flex justify-between items-center px-0 md:px-2 md:gap-2 border-b border-red py-1">
 
-                                <div className="flex items-center gap-1 sm:gap-3" >
-                                    <img src={medalimage} className="w-6 h-6 sm:w-6 sm:h-6" />
-                                    <span className="block text-sm md:text-lg text-black">{rowData.name}</span>
+                                <div className="flex items-center gap-1 sm:gap-1.5" >
+                                    <img src={medalimage} className="w-3 h-3 sm:w-4 sm:h-4" />
+                                    <span className="block text-xs md:text-[1.05rem] text-black">{rowData.name}</span>
                                 </div>
 
                                 <div className="flex items-center gap-0.5 sm:gap-3">
                                     {rowData.betNo.map((bet, index) => (
-                                        <button key={index} className="border-2 border-[#B600D4] bg-transparent h-7 w-7 sm:h-8 sm:w-8 rounded-lg text-lg font-medium text-[#000] dark:text-gray-200 cursor-text">{bet}</button>
+                                        <button key={index} className="border-1 sm:border-2 border-[#B600D4] bg-transparent h-5 w-5 sm:h-8 sm:w-8 rounded-lg text-sm md:text-lg font-medium text-[#000] dark:text-gray-200 cursor-text">{bet}</button>
                                     ))}
                                 </div>
-                                <span className="block text-sm md:text-lg font-medium text-gray-800 dark:text-gray-200">{rowData.phoneNumber}</span>
+
+                                <span className="block text-xs md:text-[1.05rem] font-medium text-gray-800 dark:text-gray-200">{rowData.phoneNumber}</span>
                             </div>
                         ))}
 

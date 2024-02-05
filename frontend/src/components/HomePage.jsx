@@ -127,7 +127,7 @@ const HomePage = () => {
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-center w-full -mb-20 lg:mt-0 lg:w-1/2">
+                        <div className="flex items-center justify-center w-full mt-12 -mb-20 lg:mt-0 lg:w-1/2">
                             <img className="w-full h-[330px] flex md:hidden lg:max-w-3xl" style={{ objectFit: 'cover' }} src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Rectangle_71.jpg?v=1707132317" alt="Catalogue-pana.svg" />
                         </div>
                     </div>
@@ -143,19 +143,19 @@ const HomePage = () => {
                             <span className="relative bg-black z-10 px-2"><img className='h-7' src={crown} alt="" /></span>
                         </span>
                         {/* DIVIDER - END*/}
-                        <h2 className='text-4xl font-bold mt-3 mb-4 xl:mb-14'>Draw Timer</h2>
+                        <h2 className='text-4xl tracking-wide font-bold mt-3 mb-7 xl:mb-14'>Draw Timer</h2>
 
                         <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 place-items-center">
 
                             {/* LEFT IMAGE */}
                             <div className="w-full md:px-0 text-center">
-                                <img className="px-5 lg:px-0 mx-auto w-full h-full" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/LEFT_IMAGE_1.png?v=1707131696" alt="avatar" />
+                                <img className="px-6 lg:px-0 mx-auto w-full h-full" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/LEFT_IMAGE_1.png?v=1707131696" alt="avatar" />
                             </div>
 
                             {/* MIDDLE DATA */}
                             <div className="w-full md:px-0 text-center mt-10 sm:mt-0">
                                 {/* ----------- FIRST TABLE FOR 100 PKR ----------- */}
-                                <div className="timer_100 px-5 lg:px-0 pt-0 md:pt-9 lg:pt-7 xl:pt-3 mb-8">
+                                <div className="timer_100 px-6 lg:px-0 pt-0 md:pt-9 lg:pt-7 xl:pt-3 mb-8">
                                     <div className="relative border border-white rounded-2xl p-2 text-white text-center font-bold bg-black w-full">
                                         <h2 className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white text-black px-10 py-1 rounded-3xl'>
                                             <span className='flex justify-center items-center'>Draw<img className='px-1' src={PKR100} alt="" /> 100PKR</span>
@@ -180,7 +180,7 @@ const HomePage = () => {
                                     </div>
                                 </div>
                                 {/* ----------- FIRST TABLE FOR 200 PKR ----------- */}
-                                <div className="timer_100 px-5 lg:px-0 mb-8">
+                                <div className="timer_100 px-6 lg:px-0 mb-8">
                                     <div className="relative border border-white rounded-2xl p-4 text-white text-center font-bold bg-black w-full">
                                         <h2 className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white text-black py-1 rounded-3xl'>
                                             <span className='flex justify-center items-center w-48'><img className='px-1' src={medal} alt="" /> Today Winners</span>
@@ -204,7 +204,7 @@ const HomePage = () => {
                                     </div>
                                 </div>
                                 {/* ----------- FIRST TABLE FOR 500 PKR ----------- */}
-                                <div className="timer_100 px-5 lg:px-0 mb-8">
+                                <div className="timer_100 px-6 lg:px-0 mb-8">
                                     <div className="relative border border-white rounded-2xl p-2 text-white text-center font-bold bg-black w-full">
                                         <h2 className='absolute -top-5 left-1/2 transform -translate-x-1/2 bg-white text-black px-10 py-1 rounded-3xl'>
                                             <span className='flex justify-center items-center'>Draw<img className='px-1' src={PKR500} alt="" /> 500PKR</span>
@@ -232,7 +232,7 @@ const HomePage = () => {
 
                             {/* RIGHT IMAGE */}
                             <div className="w-full md:px-0 text-center">
-                                <img className="px-5 lg:px-0 mx-auto w-full h-full" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/RIGHT_IMAGE_1.png?v=1707131698" alt="avatar" />
+                                <img className="px-6 lg:px-0 mx-auto w-full h-full" src="https://cdn.shopify.com/s/files/1/0704/6378/2946/files/RIGHT_IMAGE_1.png?v=1707131698" alt="avatar" />
                             </div>
 
                         </div>
@@ -240,7 +240,7 @@ const HomePage = () => {
                 </section>
 
                 {/* ----------- BET BOXES ----------- */}
-                <section id='bet_boxes' className='px-5 md:px-2 text-center bg-black text-white py-10'>
+                <section id='bet_boxes' className='px-6 md:px-2 text-center bg-black text-white py-10'>
                     <div className="cont">
                         <div className="grid gap-8 md:gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
                             {/* 100 PKR */}
