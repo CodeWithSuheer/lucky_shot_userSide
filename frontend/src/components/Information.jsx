@@ -170,17 +170,9 @@ const Information = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('formData', formData);
-
-        try {
-            dispatch(createBetAsync(formData))
-                .then((res) => {
-                    console.log('res', res);
-                })
-        } catch (error) {
-            console.log(error);
-        }
-    }
+        console.log(formData);
+        dispatch(createBetAsync(formData))
+    };
 
     // HANDLE CLOSE MODAL
     const handleCloseModal = () => {

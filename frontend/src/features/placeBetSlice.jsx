@@ -13,7 +13,7 @@ export const createBetAsync = createAsyncThunk("bet/createBet", async (formData)
         return response;
 
     } catch (error) {
-        console.log(error.response.message);
+        console.log(error.response.data.msg)
     }
 });
 

@@ -18,7 +18,7 @@ import cron from "node-cron";
 dotenv.config();
 const app = express();
 app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: "50mb" }));
  
 
 app.use(cors({

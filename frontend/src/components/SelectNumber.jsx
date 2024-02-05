@@ -4,7 +4,6 @@ import { Button } from "@nextui-org/react";
 import { Toaster, toast } from "react-hot-toast";
 import ThankYou from "../common/ThankYou/ThankYou";
 import crown from '../assets/CROWN.png';
-import BG from '../assets/BG.png';
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 
@@ -46,7 +45,7 @@ export default function () {
   const amount = id.split("-")[1];
   const navigate = useNavigate()
   const [selectedNumbers, setSelectedNumbers] = useState([]);
-  const [Modal, setModal] = useState(false); // Initialize Modal as false
+  const [Modal, setModal] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -181,6 +180,7 @@ export default function () {
             </div>
 
           </div>
+
         </div>
       </section >
 
