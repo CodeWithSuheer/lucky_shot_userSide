@@ -9,11 +9,11 @@ const createBetUrl = "http://localhost:8080/api/bets/createBet";
 export const createBetAsync = createAsyncThunk("bet/createBet", async (formData) => {
     try {
         const response = await axios.post(createBetUrl, formData);
-        console.log(response);
-        return response;
+        console.log(response.data);
+        return response.data;
 
     } catch (error) {
-        console.log(error.response.message);
+        console.log(error.response.data.msg);
     }
 });
 
@@ -32,14 +32,14 @@ const placeBetSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            // createProductAsync
-            .addCase(createBetAsync.pending, (state, action) => {
-                state.loading = true;
-            })
-            .addCase(createBetAsync.fulfilled, (state, action) => {
-                state.loading = false;
-                state.createBet = action.payload;
-            })
+            // // createProductAsync
+            // .addCase(createBetAsync.pending, (state, action) => {
+            //     state.loading = true;
+            // })
+            // .addCase(createBetAsync.fulfilled, (state, action) => {
+            //     state.loading = false;
+            //     state.createBet = action.payload;
+            // })
     }
 })
 
