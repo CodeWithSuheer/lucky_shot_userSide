@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Marquee from 'react-fast-marquee';
 import backgroundimage from '../assets/BG.png'
 import easypaisa from '../assets/easypaisa.png'
@@ -11,6 +11,9 @@ import sadapay from '../assets/sadapay.png'
 import crown from '../assets/CROWN.png';
 import { Link, useParams } from 'react-router-dom';
 import ThankYou from "../common/ThankYou/ThankYou";
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { createBetAsync } from '../features/placeBetSlice';
 
 
 const TextData = () => {
@@ -38,6 +41,9 @@ const style = {
 }
 
 const Information = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const fileInputRef = useRef(null);
     const [Modal, setModal] = useState(false);
     const [activeCard, setActiveCard] = useState(null);
     const { id } = useParams();
@@ -59,8 +65,21 @@ const Information = () => {
             Id: '65be584d641dc8c13cd31e3a',
             number: '',
         },
-        additionalFile: null,
+        image: '',
     });
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setFileToBase(file);
+    };
+
+    const setFileToBase = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setFormData({ ...formData, image: reader.result });
+        };
+    };
 
     const handleChange = (e, field) => {
         setFormData((prevFormData) => ({
@@ -152,6 +171,15 @@ const Information = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('formData', formData);
+
+        try {
+            dispatch(createBetAsync(formData))
+                .then((res) => {
+                    console.log('res', res);
+                })
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     // HANDLE CLOSE MODAL
@@ -163,8 +191,6 @@ const Information = () => {
     const handleOpenModal = () => {
         setModal(true); // Open modal
     };
-
-    // console.log('formData', formData);
 
     return (
         <>
@@ -364,15 +390,16 @@ const Information = () => {
                                 <label className="cursor-pointer p-4">
                                     <input
                                         type="file"
-                                        id="AdditionalFile"
-                                        name="AdditionalFile"
+                                        id="file"
                                         className="ModelFileDropField absolute w-[100px] h-10 opacity-0 cursor-pointer"
-                                        onChange={(e) => handleChange(e, "AdditionalFile")}
+                                    // onChange={handleImageChange}
+                                    // accept="image/*"
+                                    // ref={fileInputRef}
                                     />
                                     <div className="flex gap-1 items-center">
                                         <FileUp size={25} />
                                         <span className="text-gray-300 font-normal">
-                                            {formData.additionalFile
+                                            {formData.image
                                                 ? formData.additionalFile.name
                                                 : "Upload Screenshot"}
                                         </span>

@@ -2,18 +2,18 @@ import axios from 'axios';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 //API URL
-const createBetUrl = "http://localhost:3000/api/createOrder";
+const createBetUrl = "http://localhost:8080/api/bets/createBet";
 
 
 // createBetAsync
 export const createBetAsync = createAsyncThunk("bet/createBet", async (formData) => {
     try {
         const response = await axios.post(createBetUrl, formData);
-        console.log(response.data);
-        return response.data;
+        console.log(response);
+        return response;
 
     } catch (error) {
-        console.log(error.response);
+        console.log(error.response.message);
     }
 });
 
@@ -44,3 +44,6 @@ const placeBetSlice = createSlice({
 })
 
 export default placeBetSlice.reducer;
+
+
+
