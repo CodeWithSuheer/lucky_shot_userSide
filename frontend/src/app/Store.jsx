@@ -8,6 +8,6 @@ export const store = configureStore({
     reducer: {
         betData: placeBetSlice,
         betResults : BetResutsSlice,
-        accounts: getAccountsSlice.
+        accounts: getAccountsSlice
     },
 });
