@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 //API URL
 const createBetUrl = "http://localhost:8080/api/bets/createBet";
@@ -9,11 +10,13 @@ const createBetUrl = "http://localhost:8080/api/bets/createBet";
 export const createBetAsync = createAsyncThunk("bet/createBet", async (formData) => {
     try {
         const response = await axios.post(createBetUrl, formData);
-        console.log(response);
-        return response;
+        console.log(response.data);
+        // toast.success(response.data.msg);
+        return response.data;
 
     } catch (error) {
-        console.log(error.response.data.msg)
+        console.log(error.response.data.message)
+        // toast.success(error.response.data.message)
     }
 });
 

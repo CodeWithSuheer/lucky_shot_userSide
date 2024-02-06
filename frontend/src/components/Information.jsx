@@ -1,19 +1,22 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import Marquee from 'react-fast-marquee';
 import backgroundimage from '../assets/BG.png'
 import easypaisa from '../assets/easypaisa.png'
 import easy_pasia_logo from '../assets/easy_pasia_logo.png'
 import jazzcash from '../assets/jazzcash.png'
 import { FileUp } from 'lucide-react';
-import { Button } from '@nextui-org/button';
 import nayapay from '../assets/nayapay.png'
 import sadapay from '../assets/sadapay.png'
 import crown from '../assets/CROWN.png';
 import { Link, useParams } from 'react-router-dom';
-import ThankYou from "../common/ThankYou/ThankYou";
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createBetAsync } from '../features/placeBetSlice';
+import { getAccountsAsync, updateAccountLimitAsync } from '../features/getAccountsSlice';
+import { Snippet } from "@nextui-org/react";
+import { Trash2 } from 'lucide-react';
+
 
 
 const TextData = () => {
@@ -26,7 +29,15 @@ const TextData = () => {
 
 const style = {
     main_bg: {
-        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/BG.png?v=1706958005")',
+        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Group_1001.png?v=1707077440")',
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        height: "100%",
+        width: "100%",
+    },
+    mobile_view: {
+        backgroundImage: 'url("https://cdn.shopify.com/s/files/1/0704/6378/2946/files/bg_gradaint.png?v=1707160504")',
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -41,15 +52,45 @@ const style = {
 }
 
 const Information = () => {
+    const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const fileInputRef = useRef(null);
-    const [Modal, setModal] = useState(false);
+    const [Modal1, setModal1] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [activeCard, setActiveCard] = useState(null);
-    const { id } = useParams();
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
     const amount = id.split("-")[0];  // USER BET AMOUNT  
     const bet_number = id.split("-")[1]; // USER BET NUMBER
 
+
+    const accountsDetails = useSelector((state) => state.accounts.allAccounts);
+
+    let jazzCashAccounts, easyPaisaAccounts;
+
+    if (accountsDetails) {
+        jazzCashAccounts = accountsDetails.filter(account => account.paymentMethod === 'Jazz Cash');
+        easyPaisaAccounts = accountsDetails.filter(account => account.paymentMethod === 'Easy Paisa');
+    } else {
+        console.log('No account details available.');
+    }
+
+    useEffect(() => {
+        dispatch(getAccountsAsync());
+    }, []);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const [formData, setFormData] = useState({
         betAmount: parseInt(amount),
@@ -62,7 +103,7 @@ const Information = () => {
             paymentMethod: '',
         },
         accountUsed: {
-            Id: '65be584d641dc8c13cd31e3a',
+            Id: '',
             number: '',
         },
         image: '',
@@ -119,74 +160,169 @@ const Information = () => {
         }));
     };
 
-    const handleCardClick = (accountType) => {
-        setActiveCard(accountType);
+    useEffect(() => {
+        // console.log('Updated accountsDetails:', accountsDetails);
 
-        // Update the account number in formData based on the selected account type
+        let filteredAccounts;
+        if (activeCard === 'jazzcash') {
+            filteredAccounts = accountsDetails.filter(account => account.paymentMethod === 'Jazz Cash');
+        } else if (activeCard === 'easypaisa') {
+            filteredAccounts = accountsDetails.filter(account => account.paymentMethod === 'Easy Paisa');
+        }
+
+        if (filteredAccounts && filteredAccounts.length > 0) {
+            const latestAccount = filteredAccounts[0];
+
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                accountUsed: {
+                    Id: latestAccount.id,
+                    number: latestAccount.accountNumber,
+                },
+            }));
+        }
+    }, [accountsDetails, activeCard]);
+
+    const handleCardClick = async (accountType) => {
+        setActiveCard(accountType);
+        setLoading(true);
+
         const accountNumbers = {
-            jazzcash: '0332 2323232', // Replace with the actual Jazz Cash account number
-            easypaisa: '0332 2323232', // Replace with the actual EasyPaisa account number
+            jazzcash: 'Jazz Cash',
+            easypaisa: 'Easy Paisa',
         };
 
-        setFormData((prevFormData) => ({
-            ...prevFormData,
-            accountUsed: {
-                ...prevFormData.accountUsed,
-                number: accountNumbers[accountType] || '', // Set the account number based on the selected account type
-            },
-        }));
+        try {
+            let selectedAccount;
+
+            if (accountType === 'jazzcash') {
+                selectedAccount = jazzCashAccounts[0];
+            } else {
+                selectedAccount = easyPaisaAccounts[0];
+            }
+
+            const newUsedLimit = selectedAccount.usedLimit + formData.betAmount;
+
+            if (newUsedLimit > selectedAccount.limit) {
+                await dispatch(updateAccountLimitAsync(selectedAccount.id));
+                await dispatch(getAccountsAsync());
+                setLoading(false);
+                console.log('ACCOUNT LIMIT FULL');
+            } else {
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    accountUsed: {
+                        Id: selectedAccount.id,
+                        number: selectedAccount.accountNumber,
+                    },
+                }));
+                setLoading(false);
+            }
+        } catch (error) {
+            console.error(error);
+            setLoading(false);
+        }
     };
 
-
     const renderAccountDetails = () => {
+        let selectedAccounts;
+
         if (activeCard === 'easypaisa') {
-            return (
-                <div className={`block w-full rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
-                    <img className='rounded-sm w-15 h-10 pb-2' src={easypaisa} alt="" />
-                    <p className='text-white font-medium text-sm '>Account Number:</p>
-                    <p className='text-gray-200 text-sm font-light my-1'>0332 2323232</p>
-                    <p className='text-white mt-2 font-medium text-md'>Account Title:</p>
-                    <p className='text-gray-200 text-sm'>Umer EasyPaisa</p>
-                </div>
-            );
+            selectedAccounts = easyPaisaAccounts;
         } else if (activeCard === 'jazzcash') {
+            selectedAccounts = jazzCashAccounts;
+        }
+
+        if (selectedAccounts && selectedAccounts.length > 0) {
+            const firstAccount = selectedAccounts[0];
+
             return (
-                <div className={`block w-full rounded-md border ${activeCard === 'jazzcash' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('jazzcash')}>
-                    <img className='rounded-md w-15 h-10 pb-2' src={jazzcash} alt="" />
-                    <p className='text-white text-sm'>Account Number:</p>
-                    <p className='text-gray-200 text-sm font-light my-1'>0332 2323232</p>
-                    <p className='text-white mt-2 text-md'>Account Title:</p>
-                    <p className='text-gray-200 text-sm'>Suheer Jazz Cash</p>
-                </div>
+                <>
+                    {loading ? (
+                        <div className={`flex justify-center items-center text-center w-full h-48 rounded-md bg-[#474747] px-2 py-5`}>
+                            <div className={`block animate-pulse w-full rounded-md border border-transparent bg-[#474747] px-4 py-5`}>
+                                <p className='bg-gray-500 rounded-lg h-3 w-44 my-3'></p>
+                                <p className='bg-gray-500 rounded-lg h-3 w-56 my-3'></p>
+                                <p className='bg-gray-500 rounded-lg h-3 w-44 my-3'></p>
+                                <p className='bg-gray-500 rounded-lg h-3 w-56 my-3'></p>
+                            </div>
+                        </div>
+
+                    ) : (
+                        <div className={`block w-full rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-4 py-5`} onClick={() => handleCardClick(activeCard)}>
+                            <img className='rounded-sm w-15 h-12 pb-2' src={activeCard === 'easypaisa' ? easypaisa : jazzcash} alt="" />
+                            <p className='text-white font-medium text-sm'>Account Number:</p>
+                            <Snippet symbol="" className='text-gray-200 bg-transparent text-md pl-0 font-normal py-0'>{firstAccount.accountNumber}</Snippet>
+                            <p className='text-white mt-2 font-medium text-md'>Account Title:</p>
+                            <p className='text-gray-200 text-sm'>{firstAccount.accountTitle}</p>
+                        </div>
+                    )}
+                </>
+
             );
         } else {
             return (
-                <div className={`flex justify-center items-center text-center w-full h-48 rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick('easypaisa')}>
+                <div className={`flex justify-center items-center text-center w-full h-48 rounded-md border ${activeCard === 'easypaisa' ? 'border-[#B600D4]' : 'border-transparent'} bg-[#474747] px-2 py-5 cursor-pointer`} onClick={() => handleCardClick(activeCard)}>
                     <p className='text-lg md:text-md lg:text-lg tracking-wide'>Choose any account for more details</p>
                 </div>
             );
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
-        dispatch(createBetAsync(formData))
+        setLoading(true);
+
+        try {
+            console.log(formData);
+            const res = await dispatch(createBetAsync(formData));
+            console.log('res', res);
+
+            if (res.payload?.msg === 'Bet Placed Successfully') {
+                handleOpenModal();
+
+                setFormData({
+                    betAmount: '',
+                    betNumber: '',
+                    name: '',
+                    mobileNumber: '',
+                    prizeAcntInfo: {
+                        acntTitle: '',
+                        acntNumber: '',
+                        paymentMethod: '',
+                    },
+                    accountUsed: {
+                        Id: '',
+                        number: '',
+                    },
+                    image: '',
+                });
+            }
+        } catch (error) {
+            console.error('Error placing the bet:', error);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    // HANDLE CLOSE MODAL
     const handleCloseModal = () => {
-        setModal(false); // Close modal
+        setModal1(false);
+        navigate("/")
+        window.scroll(0, 0);
     };
 
-    // HANDLE OPEN MODAL
     const handleOpenModal = () => {
-        setModal(true); // Open modal
+        setModal1(true);
+    };
+
+    const resetImage = () => {
+        setFormData({ ...formData, image: '' });
+        fileInputRef.current.value = '';
     };
 
     return (
         <>
-            <section className="relative" style={style.main_bg}>
+            <section className="relative" style={isMobile ? style.mobile_view : style.main_bg}>
                 {/* ----------- HEADER ----------- */}
                 <div style={{ ...style.shadowBlue, zIndex: 999 }} className="absolute w-full header bg-[#0035D4] text-white py-2 text-sm">
                     <Marquee speed={70}>
@@ -206,9 +342,10 @@ const Information = () => {
                     </div>
 
                     {/* ----------- DIVIDER ----------- */}
-                    <span className="relative mb-5 max-w-md mx-auto flex justify-center">
-                        <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-75"></div>
-                        <span className="relative bg-black z-10 px-2"><img className='h-7' src={crown} alt="" /></span>
+                    <span className="flex items-center w-48 md:w-72 mb-5 mx-auto">
+                        <span className="h-px mt-3 flex-1 bg-gray-300 opacity-75"></span>
+                        <span className="shrink-0 px-2"><img className='h-7' src={crown} alt="" /></span>
+                        <span className="h-px mt-3 flex-1 bg-gray-300 opacity-75"></span>
                     </span>
 
                     <h4 className="text-xl md:text-4xl tracking-wider font-bold text-white text-center py-3">Enter Your Information</h4>
@@ -238,18 +375,6 @@ const Information = () => {
                     {/* --------- SECOND ROW --------- */}
                     <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 pt-4 pb-7`}>
                         <div>
-                            <label className="block mb-2  text-sm font-medium text-gray-200">Account No <span className='text-red-500'>*</span></label>
-                            <input
-                                required
-                                type="text"
-                                placeholder="Account Title"
-                                value={formData.prizeAcntInfo.acntNumber}
-                                onChange={(e) => handleNestedChange('prizeAcntInfo', 'acntNumber', e.target.value)}
-                                className="block w-full rounded-md px-5 py-4 mt-2 text-gray-100 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none"
-                            />
-                        </div>
-
-                        <div>
                             <label className="block mb-2 text-sm font-medium text-gray-200">Account Title <span className='text-red-500'>*</span></label>
                             <input
                                 required
@@ -257,6 +382,18 @@ const Information = () => {
                                 placeholder="Account Title"
                                 value={formData.prizeAcntInfo.acntTitle}
                                 onChange={(e) => handleNestedChange('prizeAcntInfo', 'acntTitle', e.target.value)}
+                                className="block w-full rounded-md px-5 py-4 mt-2 text-gray-100 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none"
+                            />
+                        </div>
+
+                        <div>
+                            <label className="block mb-2  text-sm font-medium text-gray-200">Account No <span className='text-red-500'>*</span></label>
+                            <input
+                                required
+                                type="tel"
+                                placeholder="Account Title"
+                                value={formData.prizeAcntInfo.acntNumber}
+                                onChange={(e) => handleNestedChange('prizeAcntInfo', 'acntNumber', e.target.value)}
                                 className="block w-full rounded-md px-5 py-4 mt-2 text-gray-100 placeholder-gray-500 bg-[#474747] border border-[#B600D4]  focus:border  focus:outline-none"
                             />
                         </div>
@@ -312,7 +449,7 @@ const Information = () => {
                                 name="hs-radio-on-right"
                                 className="mt-0.5 border-gray-200 rounded-full accent-[#B600D4]"
                                 id="hs-radioradio-on-right22"
-                                onChange={() => handlePaymentMethodChange('Naya Pay')}
+                                onChange={() => handlePaymentMethodChange('Nayapay')}
                             />
                         </label>
                     </div>
@@ -323,7 +460,6 @@ const Information = () => {
 
                     <fieldset className="grid grid-cols-1 md:grid-cols-2 gap-4 my-5">
                         <legend className="sr-only">Accounts</legend>
-
                         <div>
                             <label
                                 htmlFor="jazzcash"
@@ -378,33 +514,59 @@ const Information = () => {
                         </div>
 
                         <div className='col-span-1 lg:col-span-2'>
-                            <div className="w-full flex items-center justify-center h-16 md:h-48 rounded-md bg-[#474747]">
-                                <label className="cursor-pointer p-4">
-                                    <input
-                                        type="file"
-                                        id="file"
-                                        className="ModelFileDropField absolute w-[100px] h-10 opacity-0 cursor-pointer"
-                                    // onChange={handleImageChange}
-                                    // accept="image/*"
-                                    // ref={fileInputRef}
-                                    />
-                                    <div className="flex gap-1 items-center">
-                                        <FileUp size={25} />
-                                        <span className="text-gray-300 font-normal">
-                                            {formData.image
-                                                ? formData.additionalFile.name
-                                                : "Upload Screenshot"}
-                                        </span>
+                            <div className="relative w-full flex items-center justify-center rounded-md bg-[#474747]">
+                                {formData.image ? (
+                                    <div className="py-3 h-32 sm:h-48">
+                                        <div className="absolute inset-0 overflow-hidden rounded-md flex justify-center items-center">
+                                            <img
+                                                src={formData.image}
+                                                alt="Selected"
+                                                className=""
+                                                style={{ backgroundSize: 'contain', backgroundPosition: 'center', }}
+                                            />
+                                        </div>
+                                        <button className="absolute bottom-3 right-3 bg-red-600 rounded-full p-2 flex justify-center items-center" onClick={resetImage}>
+                                            <Trash2 />
+                                        </button>
                                     </div>
-                                </label>
+                                ) : (
+                                    <label className="cursor-pointer h-32 sm:h-48">
+                                        <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-full pt-4 sm:py-10 mx-auto  mt-2 text-center border-dashed cursor-pointer rounded-xl">
+
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8 text-gray-400">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
+                                            </svg>
+
+                                            <h2 className="mt-1 font-medium tracking-wide text-gray-100">Upload File</h2>
+
+                                            <p className="mt-1 text-xs tracking-wide text-gray-200">Upload or darg & drop PNG, JPG </p>
+
+                                            <input id="dropzone-file" ref={fileInputRef} type="file" className="hidden" onChange={handleImageChange} />
+                                        </label>
+                                        {/* <input
+                                            type="file"
+                                            id="file"
+                                            className="ModelFileDropField absolute opacity-0 cursor-pointer"
+                                            onChange={handleImageChange}
+                                            accept="image/*"
+                                            ref={fileInputRef}
+                                        />
+                                        <div className="flex gap-1 items-center cursor-pointer">
+                                            <FileUp size={25} />
+                                            <span className="text-gray-300 font-normal cursor-pointer">
+                                                {formData.image
+                                                    ? formData.additionalFile
+                                                    : "Upload Screenshot"}
+                                            </span>
+                                        </div> */}
+                                    </label>
+                                )}
                             </div>
                         </div>
                     </div>
 
                     <div className="flex justify-center items-center py-5">
-                        <Button
-                            type='submit'
-                            // onClick={() => setModal(!Modal)}
+                        <Button type='submit' isLoading={loading}
                             className='gradent rounded-md text-md px-8 tracking-wider text-white font-medium' variant="solid">
                             Submit
                         </Button>
@@ -412,7 +574,30 @@ const Information = () => {
                 </form>
             </section>
 
-            {Modal && <ThankYou isOpen={handleOpenModal} onClose={handleCloseModal} />}
+            {/* {Modal && <ThankYou isOpen={handleOpenModal} onClose={handleCloseModal} />} */}
+
+            {Modal1 &&
+                <Modal backdrop="blur" size='sm' placement="center" isOpen={Modal} onClose={handleCloseModal} className="flex flex-wrap flex-col justify-center items-center px-2 py-1 md:px-5">
+                    <ModalContent>
+                        <>
+                            <ModalHeader >
+                                <img src={'https://cdn.shopify.com/s/files/1/0704/6378/2946/files/Lucky_Logo_Casino.png?v=1706801454'} className="mt-3 w-40 h-20" />
+                            </ModalHeader>
+                            <ModalBody className="text-center">
+                                <p className="text-3xl font-extrabold text-black ">Thank You</p>
+                                <p className="text-sm md:text-xl font-medium  text-black ">Your bet has been Placed</p>
+                                <p className="text-sm lg:text-md  font-medium  text-black">Wait For Lucky Draw <span className="text-md  uppercase font-bold text-[#B600D4]"> Best of Luck </span></p>
+                            </ModalBody>
+                            <ModalFooter>
+                                <div className="flex flex-wrap justify-center items-baseline gap-0.5 ">
+                                    <img className='h-7' src={crown} alt="" />
+                                </div>
+                            </ModalFooter>
+                        </>
+                    </ModalContent>
+                </Modal>
+            }
+
         </>
     );
 };
