@@ -342,9 +342,10 @@ const Information = () => {
                     </div>
 
                     {/* ----------- DIVIDER ----------- */}
-                    <span className="relative mb-5 max-w-md mx-auto flex justify-center">
-                        <div className="absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-transparent bg-gradient-to-r from-transparent via-gray-100 to-transparent opacity-75"></div>
-                        <span className="relative bg-black z-10 px-2"><img className='h-7' src={crown} alt="" /></span>
+                    <span className="flex items-center w-48 md:w-72 mb-5 mx-auto">
+                        <span className="h-px mt-3 flex-1 bg-gray-300 opacity-75"></span>
+                        <span className="shrink-0 px-2"><img className='h-7' src={crown} alt="" /></span>
+                        <span className="h-px mt-3 flex-1 bg-gray-300 opacity-75"></span>
                     </span>
 
                     <h4 className="text-xl md:text-4xl tracking-wider font-bold text-white text-center py-3">Enter Your Information</h4>
@@ -530,17 +531,17 @@ const Information = () => {
                                     </div>
                                 ) : (
                                     <label className="cursor-pointer h-32 sm:h-48">
-                                        <label for="dropzone-file" class="flex flex-col justify-center items-center w-full pt-4 sm:py-10 mx-auto  mt-2 text-center border-dashed cursor-pointer rounded-xl">
+                                        <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-full pt-4 sm:py-10 mx-auto  mt-2 text-center border-dashed cursor-pointer rounded-xl">
 
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" class="w-8 h-8 text-gray-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-8 h-8 text-gray-400">
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
                                             </svg>
 
-                                            <h2 class="mt-1 font-medium tracking-wide text-gray-100">Upload File</h2>
+                                            <h2 className="mt-1 font-medium tracking-wide text-gray-100">Upload File</h2>
 
-                                            <p class="mt-1 text-xs tracking-wide text-gray-200">Upload or darg & drop PNG, JPG </p>
+                                            <p className="mt-1 text-xs tracking-wide text-gray-200">Upload or darg & drop PNG, JPG </p>
 
-                                            <input id="dropzone-file" ref={fileInputRef} type="file" class="hidden" onChange={handleImageChange} />
+                                            <input id="dropzone-file" ref={fileInputRef} type="file" className="hidden" onChange={handleImageChange} />
                                         </label>
                                         {/* <input
                                             type="file"
