@@ -4,6 +4,7 @@ import SelectNumber from './components/SelectNumber';
 import UserInfo from './components/UserInfo';
 import Footer from './common/Footer';
 import Information from './components/Information';
+import  { Toaster } from "react-hot-toast";
 import './App.css'
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+      <Toaster position="top-center" reverseOrder={true} />
     </>
   )
 }
