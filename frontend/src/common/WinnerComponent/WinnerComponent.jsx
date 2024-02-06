@@ -1,54 +1,13 @@
 import React from "react";
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 import medalimage from '../../assets/medal.png'
+import { useSelector } from "react-redux";
 const WinnerToday = ({ isOpen, onClose }) => {
-    const tableData = [
-        {
-            id: 1,
-            name: 'Umer Javaid',
-            betNo: [1, 2, 3],
-            betAmount: '100 PKR',
-            phoneNumber: '0332 4700802'
-        },
-        {
-            id: 2,
-            name: 'Umer Javaid',
-            betNo: [1, 2, 3],
-            betAmount: '200 PKR',
-            phoneNumber: '0332 4700802'
-        },
-        {
-            id: 3,
-            name: 'Umer Javaid',
-            betNo: [1, 2, 3],
-            betAmount: '100 PKR',
-            phoneNumber: '0332 4700802'
-        },
-        {
-            id: 4,
-            name: 'Umer Javaid',
-            betNo: [1, 2, 3],
-            betAmount: '500 PKR',
-            phoneNumber: '0336 4700802'
-        },
-        {
-            id: 5,
-            name: 'Umer Javaid',
-            betNo: [1, 2, 3],
-            betAmount: '100 PKR',
-            phoneNumber: '0332 4700802'
-        },
-        {
-            id: 6,
-            name: 'Umer Javaid',
-            betNo: [1, 2, 3],
-            betAmount: '100 PKR',
-            phoneNumber: '0332 4700802'
-        }
-        // Add more objects as needed
-    ];
 
+    const tableData = useSelector((state) => state.betResults.AllBetResults);
+   
     return (
+
         <Modal backdrop="blur" size='3xl' placement="center" isOpen={isOpen} onClose={onClose} className=" flex flex-wrap flex-col py-1 px-0 sm:px-6">
             <ModalContent>
                 <>
@@ -76,12 +35,12 @@ const WinnerToday = ({ isOpen, onClose }) => {
                                 </div>
 
                                 <div className="flex items-center gap-0.5 sm:gap-3">
-                                    {rowData.betNo.map((bet, index) => (
+                                    {String(rowData.betNumber).split("").map((bet, index) => (
                                         <button key={index} className="border-1 sm:border-2 border-[#B600D4] bg-transparent h-5 w-5 sm:h-8 sm:w-8 rounded-lg text-sm md:text-lg font-medium text-[#000] dark:text-gray-200 cursor-text">{bet}</button>
                                     ))}
                                 </div>
 
-                                <span className="block text-xs md:text-[1.05rem] font-medium text-gray-800 dark:text-gray-200">{rowData.phoneNumber}</span>
+                                <span className="block text-xs md:text-[1.05rem] font-medium text-gray-800 dark:text-gray-200">{rowData.mobileNumber}</span>
                             </div>
                         ))}
 
